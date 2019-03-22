@@ -1,0 +1,26 @@
+/* .full-height{
+    height: 90vh;
+    background-color: aquamarine
+} */
+
+.form-full-height{
+    height: 90vh;
+    background-color: aquamarine
+}
+
+
+
+@media (max-width: 575.98px) { 
+    .no-mobile{
+        display: none
+    }
+}
+
+
+@media (max-width: 767.98px) {
+
+    .no-mobile{
+        display: none
+    }
+ }
+

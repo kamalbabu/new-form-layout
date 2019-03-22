@@ -9,7 +9,7 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 class Dashboard extends Component {
     render() {
         return (
-            <MDBContainer>
+            <MDBContainer fluid>
                 <MDBRow className="vertical-align">
                     <MDBCol md="4" sm="12" className="offset-md-4 flex">
                         <MDBInput label="Please provide url to file" />
