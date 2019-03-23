@@ -11,7 +11,7 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastConversationIndex:0,
+            lastConversationIndex: 0,
             conversationTree: conversation,
             conversationDOM: [],
             processedForm: {},
@@ -19,7 +19,7 @@ class Form extends Component {
             currentInputExpects: Constant.CONVERSATION_TYPE.OPTION,
 
         }
-        this.conversationDomElm=[];
+        this.conversationDomElm = [];
         // THis is some comment
     }
 
@@ -27,60 +27,60 @@ class Form extends Component {
         this.initBotConversation();
     }
 
-    initBotConversation(){
-       this.triggerConversation()
+    initBotConversation() {
+        this.triggerConversation()
     }
 
-    triggerConversation = async() =>{
+    triggerConversation = async () => {
         let conversationObject = this.state.conversationTree[this.state.lastConversationIndex];
-        if(conversationObject!==undefined){
+        if (conversationObject !== undefined) {
             console.log(conversationObject);
-            while(conversationObject.type!=='CHOICE'){
-                let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id}/>
+            while (conversationObject.type !== 'CHOICE') {
+                let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
                 this.registerConversationElm(conversationElm);
-                let nextConversationId =this.state.lastConversationIndex +1
+                let nextConversationId = this.state.lastConversationIndex + 1
                 await this.setState({
                     lastConversationIndex: nextConversationId
                 });
                 conversationObject = this.state.conversationTree[nextConversationId];
             }
             //Encountered a choice decision
-            if(conversationObject.type==='CHOICE'){
-                let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id}/>   
+            if (conversationObject.type === 'CHOICE') {
+                let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
                 this.registerConversationElm(conversationElm);
-                let currentOption = options.find(o=>o.id==conversationObject.option);  
-                let nextConversationId =this.state.lastConversationIndex +1;
+                let currentOption = options.find(o => o.id == conversationObject.option);
+                let nextConversationId = this.state.lastConversationIndex + 1;
                 await this.setState({
-                    currentOption:currentOption,
+                    currentOption: currentOption,
                     lastConversationIndex: nextConversationId
-                });            
+                });
                 //this.forceUpdate()
             }
-        }else{
+        } else {
             //End Conversation
         }
-        
+
     }
 
     handleUserResponse(conversation) {
         console.log(conversation);
         this.setState({
-            currentOption:{}
+            currentOption: {}
         })
-        let conversationElm = <ConversationItem item={conversation} type={Constant.CONVERSATION_TYPE.TEXT} key={conversation.data.value.text}/>
+        let conversationElm = <ConversationItem item={conversation} type={Constant.CONVERSATION_TYPE.TEXT} key={conversation.data.value.text} />
         this.registerUserConversationElm(conversationElm);
 
         this.triggerConversation();
     }
 
-    registerConversationElm=async (elm)=>{
+    registerConversationElm = async (elm) => {
         this.conversationDomElm.push(elm)
         await this.setState({
             conversationDOM: this.conversationDomElm
         });
     }
 
-    registerUserConversationElm(elm){
+    registerUserConversationElm(elm) {
         this.conversationDomElm.push(elm);
         this.setState({
             conversationDOM: this.conversationDomElm
@@ -89,27 +89,38 @@ class Form extends Component {
 
     render() {
         return (
-            <MDBContainer fluid className="form-full-height no-margin-side">
-                <MDBRow className="height-full-10 light-border" >
+            <MDBContainer fluid className="form-container">
+                <MDBRow className="form-sections-container">
+                // Form Sections
+                </MDBRow>
+                <MDBRow className="form-conversation-container">
+                    <MDBCol md="3" sm="12" xs="12" className="live-form-container">
+                    // Live form
+                    </MDBCol>
+                    <MDBCol md="9" sm="12" className="conversation-container">
+                    // Conversation
+                    </MDBCol>
+                </MDBRow>
+                {/* <MDBRow className="height-full-10 light-border" >
                     hello
-                </MDBRow>
-                <MDBRow >
-                    <MDBCol md="3" className="no-mobile height-full-80 light-border">
+                </MDBRow> */}
+                {/* <MDBRow > */}
+                {/* <MDBCol md="3" className="no-mobile height-full-80 light-border">
 
-                    </MDBCol>
-                    <MDBCol md="9" sm="12" className="height-80 light-border no-padding-side">
-                        <MDBContainer className="height-full-80 no-padding-side">
-                            <MDBRow className="height-80 width-full no-margin-side">
-                            {this.state.conversationDOM}
-                                {/* <ConversationItem type={Constant.ENTITY_TYPE.BOT}/>
+                    </MDBCol> */}
+                {/* <MDBCol md="9" sm="12" className="height-80 light-border no-padding-side"> */}
+                {/* <MDBContainer className="height-full-80 no-padding-side"> */}
+                {/* <MDBRow className="height-80 width-full no-margin-side"> */}
+                {/* {this.state.conversationDOM} */}
+                {/* <ConversationItem type={Constant.ENTITY_TYPE.BOT}/>
                                 <ConversationItem type={Constant.ENTITY_TYPE.USER}/>                                 */}
-                            </MDBRow>
-                            <MDBRow className="height-20 width-full no-margin-side">
-                                <OmniInput options={this.state.currentOption} onUserResponse={this.handleUserResponse.bind(this)} />
-                            </MDBRow>
-                        </MDBContainer>
-                    </MDBCol>
-                </MDBRow>
+                {/* </MDBRow> */}
+                {/* <MDBRow className="height-20 width-full no-margin-side"> */}
+                {/* <OmniInput options={this.state.currentOption} onUserResponse={this.handleUserResponse.bind(this)} /> */}
+                {/* </MDBRow> */}
+                {/* </MDBContainer> */}
+                {/* </MDBCol> */}
+                {/* </MDBRow> */}
             </MDBContainer>
         )
     }
@@ -118,22 +129,22 @@ class Form extends Component {
 export default Form;
 
 
-function BotConversationElm(props){
+function BotConversationElm(props) {
     return (
-        <div className="conversation-container"> 
-              <div className="conversation-avatar"></div>
-              <div className="conversation-msg">{props.item.text}</div>
-        </div> 
+        <div className="conversation-container">
+            <div className="conversation-avatar"></div>
+            <div className="conversation-msg">{props.item.text}</div>
+        </div>
     )
 }
 
 function ConversationItem(props) {
 
-    let containerClassName=props.type===Constant.ENTITY_TYPE.BOT?'':'';    
+    let containerClassName = props.type === Constant.ENTITY_TYPE.BOT ? '' : '';
     return (
-        <div className="conversation-container"> 
-              <div className="conversation-avatar"></div>
-              <div className="conversation-msg">{props.item.data.value.text}</div>
-        </div> 
+        <div className="conversation-container">
+            <div className="conversation-avatar"></div>
+            <div className="conversation-msg">{props.item.data.value.text}</div>
+        </div>
     )
 }

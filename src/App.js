@@ -10,9 +10,9 @@ class App extends Component {
     return (
       <div className="flexible-content">
         <TopNavigation />
-        <main id="content" className="full-height">
-          {/* <Form/> */}
-          <Dashboard/>
+        <main id="content">
+          <Form/>
+          {/* <Dashboard/> */}
         </main>
       </div>
     );
