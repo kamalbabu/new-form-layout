@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 
 class ScanDoc extends Component {
     setRef = webcam => {
+        //Test
         this.webcam = webcam;
     };
 
