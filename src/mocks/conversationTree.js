@@ -27,7 +27,7 @@ let conversation=[
         id:'003',
         type:'CHOICE',
         text:'Which option would you like to choose for flash fill',
-        option:'FLASH_FILL_OPTION_',
+        option:'FLASH_FILL_OPTION',
         response:{
             positive:{
                 text:'Got it',
@@ -43,7 +43,7 @@ let conversation=[
         id:'004',
         type:'CHOICE',
         text:'How yould you provide the ID card?',
-        option:'FLASH_FILL_OPTION_METHOD',
+        option:'FLASH_FILL_METHOD_OPTION',
         response:{
             positive:{
                 text:'Ok',

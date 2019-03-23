@@ -13,8 +13,9 @@ class OmniInput extends Component {
         super(props);     
         this.state={
             currentVal:'',
-            currentOptionObj:props.options
+            currentOptionObj:{},            
         }
+        this.optionObj={}
     }
 
     handleUserInput(evt) {
@@ -35,12 +36,20 @@ class OmniInput extends Component {
         this.setState({
             currentVal:''
         });
+        this.optionObj={};
+        this.forceUpdate();
     }
 
     sendCurrentMsg(value){
+        
         let response ={
             type:Constant.CONVERSATION_TYPE.TEXT,
-            value : value
+            data : {
+                id:'USER_TEXT',
+                value:{
+                    text:value
+                }
+            }
         };
         this.props.onUserResponse(response);
     }
@@ -51,15 +60,18 @@ class OmniInput extends Component {
         });
         let response ={
             type:Constant.CONVERSATION_TYPE.OPTION,
-            value : option
+            data : option
         };
         this.props.onUserResponse(response);
     }
 
-    render() {
+    render() {     
+        this.optionObj = this.props.options;  
+        console.log(this.props.options);
         return (
             <div className="width-full pad-12 ">
-                <OptionList options={this.state.currentOptionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/>
+                {/* <OptionList options={this.state.currentOptionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/> */}
+                <OptionList options={this.optionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/>
                 <MDBRow className="mg-top-5 no-margin">                    
                     <MDBCol sm="12" className="flex no-margin">
                         <input type="text" id="ipOmniInput"
@@ -104,8 +116,8 @@ class OptionList extends Component{
 
     handleOptionSelect(optionItem){       
        let optionStatus={
-           optionId:this.state.options.id,
-           optionValue:optionItem
+           id:this.state.options.id,
+           value:optionItem
        }
        this.props.onSelectOption(optionStatus)
     }
@@ -113,6 +125,7 @@ class OptionList extends Component{
 
     render(){
         let OptionList;
+        console.log(this.props)
         var items= this.props.options.id?this.props.options.values:[];
         return(
 

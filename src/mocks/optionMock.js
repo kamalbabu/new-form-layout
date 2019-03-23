@@ -19,7 +19,44 @@ const options = [
             value: 'FLASH_FILL_OPTION_DRIVER',
             text: 'I want to use my Driving Card'
         }]
-    }
+    },
+    {
+        id: 'YES_OR_NO',
+        values: [
+            {
+                title: 'YES',
+                image: '',
+                value: 'YES_OR_NO__YES',
+                text: 'Yes'
+            },
+            {
+                title: 'NO',
+                image: '',
+                value: 'YES_OR_NO__NO',
+                text: 'NO'
+            }
+        ]
+
+    },
+    {
+        id: 'FLASH_FILL_METHOD_OPTION',
+        values: [
+            {
+                title: 'Upload a copy',
+                image: '',
+                value: 'FLASH_FILL_UPLOAD',
+                text: 'I want to upload a copy '
+            },
+            {
+                title: 'Scan a document',
+                image: '',
+                value: 'FLASH_FILL_SCAN',
+                text: 'I want to scan the document'
+            }
+        ]
+
+    },
+    
 ]
 
 
