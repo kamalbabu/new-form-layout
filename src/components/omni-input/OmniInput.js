@@ -4,6 +4,9 @@ import { MDBBtn, MDBIcon } from "mdbreact";
 import { MDBInput } from "mdbreact";
 import { Fragment } from 'react';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+
+import *  as Constant from '../../common/constants';
+
 class OmniInput extends Component {
 
     constructor(props){
@@ -22,7 +25,7 @@ class OmniInput extends Component {
 
     handleInputKeyPress(evt) {
         if (evt.key === 'Enter' && evt.target.value !== '') {
-            console.log(this.state.currentVal);    
+            //console.log(this.state.currentVal);    
             this.sendCurrentMsg(this.state.currentVal)
             this.clearInput();
         }
@@ -34,15 +37,23 @@ class OmniInput extends Component {
         });
     }
 
+    sendCurrentMsg(value){
+        let response ={
+            type:Constant.CONVERSATION_TYPE.TEXT,
+            value : value
+        };
+        this.props.onUserResponse(response);
+    }
+
     onSelectUserOptionSelection(option){
         this.setState({
             currentOptionObj:{}
         });
         let response ={
-            type:"CONV",
-            
-        }
-        this.props.onUserResponse()
+            type:Constant.CONVERSATION_TYPE.OPTION,
+            value : option
+        };
+        this.props.onUserResponse(response);
     }
 
     render() {

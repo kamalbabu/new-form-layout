@@ -4,18 +4,26 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import OmniInput from '../../components/omni-input/OmniInput';
 
 import options from '../../mocks/optionMock';
+import * as Constant from '../../common/constants';
 class Form extends Component {
 
     constructor(props){
         super(props);
         this.state ={
             processedForm:{},
-            currentOption:options[0]
+            currentOption:options[0],
+            currentInputExpects:Constant.CONVERSATION_TYPE.OPTION,
+
         }
     }
 
-    handleUserResponse(){
-        console.log()
+    handleUserResponse(conversation){
+        console.log(conversation)
+        if(conversation.type===Constant.CONVERSATION_TYPE.TEXT){
+            
+        }else if(conversation.type===Constant.CONVERSATION_TYPE.OPTION){
+
+        }
     }
 
 
@@ -26,10 +34,10 @@ class Form extends Component {
                     hello              
                 </MDBRow>
                  <MDBRow >
-                    <MDBCol md="4"  className="no-mobile height-full-80 light-border">
+                    <MDBCol md="3"  className="no-mobile height-full-80 light-border">
                          hello
                     </MDBCol>
-                    <MDBCol md="8" sm="12" className="height-80 light-border no-padding-side">
+                    <MDBCol md="9" sm="12" className="height-80 light-border no-padding-side">
                         <MDBContainer className="height-full-80 no-padding-side">
                             <MDBRow className="height-80 width-full no-margin-side">
 
