@@ -62,6 +62,9 @@ class Form extends Component {
     }
 
     handleUserResponse(conversation) {
+        this.setState({
+            currentOption:{}
+        })
         let conversationElm = <ConversationItem item={conversation} type={Constant.CONVERSATION_TYPE.TEXT} key={conversation.data.value.text}/>
         this.registerUserConversationElm(conversationElm);
         this.triggerConversation();

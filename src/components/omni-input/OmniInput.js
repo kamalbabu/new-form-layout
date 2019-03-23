@@ -15,7 +15,7 @@ class OmniInput extends Component {
             currentVal:'',
             currentOptionObj:{},            
         }
-        this.optionObj={}
+       
     }
 
     handleUserInput(evt) {
@@ -37,7 +37,7 @@ class OmniInput extends Component {
             currentVal:''
         });
         this.optionObj={};
-        this.forceUpdate();
+        
     }
 
     sendCurrentMsg(value){
@@ -63,15 +63,15 @@ class OmniInput extends Component {
             data : option
         };
         this.props.onUserResponse(response);
+        this.forceUpdate();
     }
 
     render() {     
         this.optionObj = this.props.options;  
-        console.log(this.props.options);
+        this.hideOption=false;
         return (
             <div className="width-full pad-12 ">
-                {/* <OptionList options={this.state.currentOptionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/> */}
-                <OptionList options={this.optionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/>
+               <OptionList options={this.optionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/>
                 <MDBRow className="mg-top-5 no-margin">                    
                     <MDBCol sm="12" className="flex no-margin">
                         <input type="text" id="ipOmniInput"
@@ -124,8 +124,7 @@ class OptionList extends Component{
     
 
     render(){
-        let OptionList;
-        console.log(this.props)
+        
         var items= this.props.options.id?this.props.options.values:[];
         return(
 
