@@ -20,6 +20,7 @@ class Form extends Component {
 
         }
         this.conversationDomElm=[];
+        // THis is some comment
     }
 
     componentDidMount() {
