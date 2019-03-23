@@ -3,3 +3,7 @@ export const CONVERSATION_TYPE ={
     OPTION :'options'
 }
 
+export const ENTITY_TYPE={
+    BOT:'bot',
+    USER:'user'
+}
