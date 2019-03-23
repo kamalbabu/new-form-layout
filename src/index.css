@@ -28,3 +28,23 @@ code {
   margin-right: 0px; */
   /* margin-left: 0px; */
 }
+
+.no-margin{
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.no-margin-side{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.no-margin-top{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.no-padding-side{
+  padding-right: 0px;
+  padding-left:0px;
+}
