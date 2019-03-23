@@ -11,7 +11,8 @@ class App extends Component {
       <div className="flexible-content">
         <TopNavigation />
         <main id="content" className="full-height">
-          <Form/>
+          {/* <Form/> */}
+          <Dashboard/>
         </main>
       </div>
     );
