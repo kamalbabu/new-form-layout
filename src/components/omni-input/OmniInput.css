@@ -19,3 +19,32 @@
     right: 28px;
     top:9px;
 }
+
+.option-container{
+    position: absolute;
+    width: 100%;
+    background-color: orange;
+    min-height: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
+    margin: auto;
+}
+
+
+.option-item{
+    position: relative;
+    float: left;
+    width:fit-content;
+    height: 30px;
+    border:1px solid grey;
+    border-radius: 40px;
+    padding-left: 24px;
+    padding-right:24px;
+    margin-left: 6px;
+    margin-right:6px;
+    margin-top:4px;
+    margin-bottom:4px;
+}

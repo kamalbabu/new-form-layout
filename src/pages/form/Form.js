@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 import './Form.css';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import OmniInput from '../../components/omni-input/OmniInput';
+
+import options from '../../mocks/optionMock';
 class Form extends Component {
 
     constructor(props){
         super(props);
         this.state ={
-            processedForm:{}
+            processedForm:{},
+            currentOption:options[0]
         }
     }
+
+    handleUserResponse(){
+        console.log()
+    }
+
 
     render() {
         return (
@@ -27,7 +35,7 @@ class Form extends Component {
 
                             </MDBRow>
                             <MDBRow className="height-20 width-full no-margin-side">
-                                <OmniInput/>
+                                <OmniInput options={this.state.currentOption} onUserResponse={this.handleUserResponse.bind(this)}/>
                             </MDBRow>
                         </MDBContainer> 
                     </MDBCol>

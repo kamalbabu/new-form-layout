@@ -7,16 +7,12 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 class OmniInput extends Component {
 
     constructor(props){
-        super(props);
+        super(props);     
         this.state={
-            currentVal:''
+            currentVal:'',
+            currentOptionObj:props.options
         }
     }
-
-    componentDidMount(){
-
-    }
-
 
     handleUserInput(evt) {
         this.setState({
@@ -32,20 +28,28 @@ class OmniInput extends Component {
         }
     }
 
-    sendCurrentMsg(msg){
-
-    }
     clearInput(){
         this.setState({
             currentVal:''
         });
     }
 
+    onSelectUserOptionSelection(option){
+        this.setState({
+            currentOptionObj:{}
+        });
+        let response ={
+            type:"CONV",
+            
+        }
+        this.props.onUserResponse()
+    }
 
     render() {
         return (
             <div className="width-full pad-12 ">
-                <MDBRow className="mg-top-5 no-margin">
+                <OptionList options={this.state.currentOptionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)}/>
+                <MDBRow className="mg-top-5 no-margin">                    
                     <MDBCol sm="12" className="flex no-margin">
                         <input type="text" id="ipOmniInput"
                             className="form-control form-control-md omni-ip"
@@ -63,3 +67,56 @@ class OmniInput extends Component {
 }
 
 export default OmniInput
+
+
+class OptionList extends Component{
+    constructor(props){
+        super(props);          
+        this.state={
+            options:props.options
+        }     
+    }
+
+    componentDidMount(){
+        this.setState({
+            options:this.props.options 
+        });
+    }
+
+    setOptionState(){
+        if(this.props.options){
+            this.setState({
+                options:this.props.options 
+            });
+        }
+    }
+
+    handleOptionSelect(optionItem){       
+       let optionStatus={
+           optionId:this.state.options.id,
+           optionValue:optionItem
+       }
+       this.props.onSelectOption(optionStatus)
+    }
+    
+
+    render(){
+        let OptionList;
+        var items= this.props.options.id?this.props.options.values:[];
+        return(
+
+                <div className="option-container">
+                    {
+                        items.map(function(item,index){
+                            return(
+                                <div className="option-item"
+                                        key={index} 
+                                        onClick={this.handleOptionSelect.bind(this,item)}>
+                                        {item.title}</div>
+                                    )
+                        }.bind(this))
+                    }
+            </div>
+        )
+    }
+}
