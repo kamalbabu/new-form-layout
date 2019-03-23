@@ -71,12 +71,12 @@ export default Form;
 
 function ConversationItem(props) {
 
-    let containerClassName=props.type===Constant.ENTITY_TYPE.BOT?''
+    let containerClassName=props.type===Constant.ENTITY_TYPE.BOT?'':'';
 
     return (
         <div className="conversation-container"> 
               <div className="conversation-avatar"></div>
-              <div className="conversation-msg">hello chakare</div>
+              <div className="conversation-msg">hello damn</div>
         </div> 
             // <MDBCol md="8" sm="12" className="conversation-container">
             //     <div className="conversation-avatar"></div>
