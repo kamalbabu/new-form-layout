@@ -19,6 +19,7 @@ class Form extends Component {
 
     handleUserResponse(conversation){
         console.log(conversation)
+        console.log('Hello');
         if(conversation.type===Constant.CONVERSATION_TYPE.TEXT){
             
         }else if(conversation.type===Constant.CONVERSATION_TYPE.OPTION){
