@@ -1,90 +1,129 @@
 import React, { Component } from 'react';
 import './Form.css';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBModal,MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 import OmniInput from '../../components/omni-input/OmniInput';
 import * as Constant from '../../common/constants';
 import options from '../../mocks/optionMock';
 import conversation from '../../mocks/conversationTree';
-
+import UploadFile from '../../components/upload/UploadFile';
+import formInfo from '../../mocks/form';
 class Form extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            lastConversationIndex: 3,
+            formcategory:[],
+            liveForm:{},
+            selectedFormCategory:0,
+            lastConversationIndex: 0,
             conversationTree: conversation,
             conversationDOM: [],
             processedForm: {},
             currentOption: {},
             currentInputExpects: Constant.CONVERSATION_TYPE.OPTION,
+            modal:false
 
         }
         this.conversationDomElm = [];
         // THis is some comment
     }
 
-    scrollToBottom = () => {
-        if(this.messagesEnd){
-            this.messagesEnd.scrollTop =  this.messagesEnd.scrollHeight;
-        }
-      }
+    componentWillMount(){
+        console.log(formInfo);
+        this.setState({
+            formcategory:formInfo.formCategory,
+            liveForm:formInfo.formDetails
+        })
+    }
 
+    toggleModal = async () => {
+        await this.setState({
+          modal: !this.state.modal
+        });
+      }
+    scrollToBottom = () => {
+        if (this.messagesEnd) {
+            this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+        }
+    }
+    onUploadFileComplete =(imageElm) =>{
+        console.log('UPLOAD RETURN');
+        this.registerUserConversationElm(imageElm);
+        this.toggleModal();
+        setTimeout(() => {
+            this.triggerConversation();
+        }, 2000);
+       
+
+    }
     componentDidMount() {
         this.initBotConversation();
         this.scrollToBottom();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.scrollToBottom();
     }
 
 
     initBotConversation() {
+        
         this.triggerConversation()
     }
 
     triggerConversation = async () => {
         let conversationObject = this.state.conversationTree[this.state.lastConversationIndex];
-        if (conversationObject !== undefined) {
-            while (conversationObject.type !== 'CHOICE') {
-                let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
-                this.registerConversationElm(conversationElm);
-                let nextConversationId = this.state.lastConversationIndex + 1
-                await this.setState({
-                    lastConversationIndex: nextConversationId
-                });
-                conversationObject = this.state.conversationTree[nextConversationId];
+        //console.log(conversationObject);
+        try{
+            if (conversationObject !== undefined) {
+                while (conversationObject.type !== 'CHOICE') {
+                    let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
+                    this.registerConversationElm(conversationElm);
+                    let nextConversationId = this.state.lastConversationIndex + 1
+                    await this.setState({
+                        lastConversationIndex: nextConversationId
+                    });
+                    conversationObject = this.state.conversationTree[nextConversationId];
+                }
+                //Encountered a choice decision
+                if (conversationObject.type === 'CHOICE') {
+                    let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
+                    this.registerConversationElm(conversationElm);
+                    let currentOption = options.find(o => o.id == conversationObject.option);
+                    let nextConversationId = this.state.lastConversationIndex + 1;
+                    await this.setState({
+                        currentOption: currentOption,
+                        lastConversationIndex: nextConversationId
+                    });
+                    //this.forceUpdate()
+                }
+            } else {
+                //End Conversation
             }
-            //Encountered a choice decision
-            if (conversationObject.type === 'CHOICE') {
-                let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
-                this.registerConversationElm(conversationElm);
-                let currentOption = options.find(o => o.id == conversationObject.option);
-                let nextConversationId = this.state.lastConversationIndex + 1;
-                await this.setState({
-                    currentOption: currentOption,
-                    lastConversationIndex: nextConversationId
-                });
-                //this.forceUpdate()
-            }
-        } else {
-            //End Conversation
+    
         }
+        catch(e){
 
+        }
+       
     }
 
     handleUserResponse(conversation) {
-        console.log(conversation);
+        //console.log(conversation);
         this.setState({
             currentOption: {}
         })
         let conversationElm = <ConversationItem item={conversation} type={Constant.CONVERSATION_TYPE.TEXT} key={conversation.data.value.text} />
         this.registerUserConversationElm(conversationElm);
+        if(conversation.data.value.value==='FLASH_FILL_UPLOAD'){
+            this.toggleModal();
+        }
+        else{
+            setTimeout(() => {
+                this.triggerConversation();
+            }, 2000);
+        }
 
-        setTimeout(()=>{
-            this.triggerConversation();
-        },2000);
-        
     }
 
     registerConversationElm = async (elm) => {
@@ -102,19 +141,23 @@ class Form extends Component {
     }
 
     render() {
+        let currentStateId = this.state.formcategory[this.state.selectedFormCategory].id;
+        let currentFormItem = this.state.liveForm.filter(x=>x.cat===currentStateId);
         return (
             <MDBContainer fluid className="form-container">
                 <MDBRow className="form-sections-container">
-                // Form Sections
+                    <FormSection item={this.state.formcategory}/>
                 </MDBRow>
                 <MDBRow className="form-conversation-container">
                     <MDBCol md="3" sm="12" xs="12" className="live-form-container">
-                    // Live form
+                       <LiveFormContainer
+                        item={currentFormItem}
+                        />
                     </MDBCol>
                     <MDBCol md="9" sm="12" className="conversation-container no-margin">
                         <div className="conversation-area no-margin">
                             <div className="conversation-item-area"
-                                    ref={(el) => { this.messagesEnd = el; }}
+                                ref={(el) => { this.messagesEnd = el; }}
                             >
                                 {this.state.conversationDOM}
                             </div>
@@ -124,6 +167,13 @@ class Form extends Component {
                         </div>
                     </MDBCol>
                 </MDBRow>
+                <MDBModal isOpen={this.state.modal}
+                          toggle={this.toggleModal} size="fluid" 
+                          className="" >
+                    <MDBModalBody>
+                        <UploadFile onUpload={this.onUploadFileComplete.bind(this)}/>    
+                    </MDBModalBody>
+                </MDBModal>
                 {/* <MDBRow className="height-full-10 light-border" >
                     hello
                 </MDBRow> */}
@@ -168,6 +218,45 @@ function ConversationItem(props) {
         <div className="conversation-item-container">
             <div className="conversation-avatar"></div>
             <div className="conversation-msg">{props.item.data.value.text}</div>
+        </div>
+    )
+}
+
+
+function FormSection(props){
+    return(
+        <div>
+            {
+                props.item.map(x=><FormSectionItem item={x}  key={x.id}/>)
+            }
+        </div>
+    )
+}
+
+function FormSectionItem(props){
+    return(
+        <div className="section-item">
+            {props.item.name}
+        </div>
+    )
+}
+
+function LiveFormContainer(props){
+    return(
+        <div>
+            {
+                props.item.map(x=><LiveFormItem item={x}  key={x.id}/>)
+            }
+        </div>
+    )
+}
+
+
+function LiveFormItem(props){
+    return (
+        <div className="live-form-item">
+            <div>{props.item.fieldName}</div>
+            <div>{props.item.value}</div>
         </div>
     )
 }

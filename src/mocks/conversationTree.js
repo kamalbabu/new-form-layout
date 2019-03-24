@@ -3,7 +3,7 @@ import options from "./optionMock";
 let conversation=[
     {
         id:'001',
-        type:'WELCOME',
+        type:'INFO',
         text:'Welcome to our brand new form filling experience. Lorem ipsum',
         option:''
     },
@@ -54,6 +54,18 @@ let conversation=[
                 nextId:''
             }
         }
+    },
+    {
+        id:'005',
+        type:'INFO_PROCESS_FLASH_FILL',
+        text:'Please wait while we process ..',
+        option:''
+    },
+    {
+        id:'006',
+        type:'INFO',
+        text:'We have successsully captured some data',
+        option:''
     }
 ];
 
