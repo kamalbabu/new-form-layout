@@ -11,7 +11,7 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastConversationIndex: 0,
+            lastConversationIndex: 3,
             conversationTree: conversation,
             conversationDOM: [],
             processedForm: {},
@@ -23,9 +23,21 @@ class Form extends Component {
         // THis is some comment
     }
 
+    scrollToBottom = () => {
+        if(this.messagesEnd){
+            this.messagesEnd.scrollTop =  this.messagesEnd.scrollHeight;
+        }
+      }
+
     componentDidMount() {
         this.initBotConversation();
+        this.scrollToBottom();
     }
+
+    componentDidUpdate(){
+        this.scrollToBottom();
+    }
+
 
     initBotConversation() {
         this.triggerConversation()
@@ -34,7 +46,6 @@ class Form extends Component {
     triggerConversation = async () => {
         let conversationObject = this.state.conversationTree[this.state.lastConversationIndex];
         if (conversationObject !== undefined) {
-            console.log(conversationObject);
             while (conversationObject.type !== 'CHOICE') {
                 let conversationElm = <BotConversationElm item={conversationObject} type={Constant.CONVERSATION_TYPE.BOT} key={conversationObject.id} />
                 this.registerConversationElm(conversationElm);
@@ -70,7 +81,10 @@ class Form extends Component {
         let conversationElm = <ConversationItem item={conversation} type={Constant.CONVERSATION_TYPE.TEXT} key={conversation.data.value.text} />
         this.registerUserConversationElm(conversationElm);
 
-        this.triggerConversation();
+        setTimeout(()=>{
+            this.triggerConversation();
+        },2000);
+        
     }
 
     registerConversationElm = async (elm) => {
@@ -97,8 +111,17 @@ class Form extends Component {
                     <MDBCol md="3" sm="12" xs="12" className="live-form-container">
                     // Live form
                     </MDBCol>
-                    <MDBCol md="9" sm="12" className="conversation-container">
-                    // Conversation
+                    <MDBCol md="9" sm="12" className="conversation-container no-margin">
+                        <div className="conversation-area no-margin">
+                            <div className="conversation-item-area"
+                                    ref={(el) => { this.messagesEnd = el; }}
+                            >
+                                {this.state.conversationDOM}
+                            </div>
+                        </div>
+                        <div className="input-area no-margin">
+                            <OmniInput options={this.state.currentOption} onUserResponse={this.handleUserResponse.bind(this)} />
+                        </div>
                     </MDBCol>
                 </MDBRow>
                 {/* <MDBRow className="height-full-10 light-border" >
@@ -142,7 +165,7 @@ function ConversationItem(props) {
 
     let containerClassName = props.type === Constant.ENTITY_TYPE.BOT ? '' : '';
     return (
-        <div className="conversation-container">
+        <div className="conversation-item-container">
             <div className="conversation-avatar"></div>
             <div className="conversation-msg">{props.item.data.value.text}</div>
         </div>

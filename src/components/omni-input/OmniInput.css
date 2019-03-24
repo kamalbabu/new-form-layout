@@ -5,7 +5,10 @@
 .pad-left-12{
     padding-left: 12px;
 }
-
+.oip-container{
+    position: relative;
+    margin-top: 38px;
+}
 
 .omni-ip{
     border-radius: 40px;
@@ -16,7 +19,7 @@
 
 .btn-send{
     position: absolute;
-    right: 28px;
+    right: 8px;
     top:9px;
 }
 

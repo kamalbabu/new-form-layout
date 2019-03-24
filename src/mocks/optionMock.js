@@ -24,16 +24,16 @@ const options = [
         id: 'YES_OR_NO',
         values: [
             {
-                title: 'YES',
+                title: 'Yes',
                 image: '',
                 value: 'YES_OR_NO__YES',
                 text: 'Yes'
             },
             {
-                title: 'NO',
+                title: 'No',
                 image: '',
                 value: 'YES_OR_NO__NO',
-                text: 'NO'
+                text: 'No'
             }
         ]
 

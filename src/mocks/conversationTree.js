@@ -30,12 +30,12 @@ let conversation=[
         option:'FLASH_FILL_OPTION',
         response:{
             positive:{
-                text:'Got it',
-                nextId:''
+                text:'Ok',
+                nextId:'004'
             },
             negative:{
                 text:'Ohh',
-                nextId:''
+                nextId:'006'
             }
         }
     },
