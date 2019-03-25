@@ -148,27 +148,31 @@ let aadharData =[
     },
     {
         id:'EMAIL',
-        value:'324323423'
+        value:'john@smith.com'
+    },
+    {
+        id:'ADDRESS',
+        value:'445 Mount Eden Road, Mount Eden, Auckland'
     },
     {
         id:'PHONE_HOME',
-        value:'324323423'
+        value:'485-123-12353'
     },
     {
         id:'PHONE_MOBILE',
-        value:'324323423'
+        value:'+919283837423'
     },
     {
         id:'NATIONALITY',
-        value:'324323423'
+        value:'Indian'
     },
     {
         id:'MARTIAL_STATUS',
-        value:'324323423'
+        value:'Single'
     },
     {
         id:'AADHAR',
-        value:'324323423'
+        value:'9874 8574 38234'
     }    
 ]
 

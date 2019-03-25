@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import * as Constant from "../../common/constants";
+import {MDBIcon} from 'mdbreact';
 import './Upload.css';
 
 class UploadFile extends Component {
@@ -9,7 +10,13 @@ class UploadFile extends Component {
             status: 'INITIAL',
             file:null
         }
+        this.triggerUpload=this.triggerUpload.bind(this);
     }
+
+    triggerUpload(){
+        this.inputElement.click();
+    }
+
     handleImageChange(e){
         e.preventDefault();
   
@@ -38,14 +45,19 @@ class UploadFile extends Component {
 
     render() {
         return (
-            <div>
+            <Fragment>
                 <div className="imgPreview">
                     {this.imagePreview}
                 </div>
-                <input className="fileInput" 
+                <input className="fileInput invisible" 
                        type="file" 
+                       ref={input => this.inputElement = input}
                        onChange={(e)=>this.handleImageChange(e)} />
-            </div>
+                <MDBIcon icon="cloud-upload-alt"
+                         size="5x"
+                         className="icon-upload"
+                         onClick={this.triggerUpload}/>
+            </Fragment>
         );
     }
 }

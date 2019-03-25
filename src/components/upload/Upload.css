@@ -1,3 +1,18 @@
 .imagePreview img{
     height: 100px;
 }
+
+.invisible{
+    display:none;
+}
+
+.icon-upload{
+    position: absolute;
+    right: 40%;
+    top:40%;
+}
+
+.icon-upload:hover{
+    color: grey;
+    cursor:pointer;
+}

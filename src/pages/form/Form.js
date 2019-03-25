@@ -21,15 +21,21 @@ class Form extends Component {
       processedForm: {},
       currentOption: {},
       currentInputExpects: Constant.CONVERSATION_TYPE.OPTION,
-      modal: false
+      modal: false,
+      aadharData:formInfo.aadharData
     };
+    //this.aadharData =formInfo.aadharData;
     this.conversationDomElm = [];
+
+    this.prefillData = this.prefillData.bind(this);
+    this.updateCategoryPercentage = this.updateCategoryPercentage.bind(this);
   }
 
   componentWillMount() {
     this.setState({
       formcategory: formInfo.formCategory,
-      liveForm: formInfo.formDetails
+      liveForm: formInfo.formDetails,
+      aadharData:formInfo.flashFillPersonal
     });
   }
   componentDidMount() {
@@ -86,12 +92,40 @@ class Form extends Component {
   initBotConversation() {
     this.triggerConversation();
   }
+  updateCategoryPercentage(){
+      for(let index=0;index<this.state.formcategory.length;index++){
+        let currentCategoryId = this.state.formcategory[index].id;
+
+        let formItem = this.state.liveForm.find(x=>x.cat===currentCategoryId);
+        console.log(formItem);
+      }
+  }
+  prefillData(){
+    let currentFormData = this.state.liveForm;
+    
+    for(let index=0;index<this.state.aadharData.length;index++){
+        let item = this.state.aadharData[index];
+        
+        for(let liveIndex=0;liveIndex<currentFormData.length;liveIndex++){
+            if(item.id===currentFormData[liveIndex].fieldId){
+                currentFormData[liveIndex].value=item.value;
+                break;                
+            }
+        }
+    }
+    this.updateCategoryPercentage()
+    this.setState({
+        liveForm:currentFormData
+    });
+    this.forceUpdate();
+  }
 
   triggerConversation = async () => {
+      console.log(this.state.lastConversationIndex)
     let conversationObject = this.state.conversationTree[
       this.state.lastConversationIndex
     ];
-   console.log(conversationObject);
+
     try {
       if (conversationObject !== undefined) {
         while (conversationObject.type !== "CHOICE") {
@@ -107,9 +141,13 @@ class Form extends Component {
           await this.setState({
             lastConversationIndex: nextConversationId
           });
+          if(conversationObject.type==='INFO_PROCESS_FLASH_FILL'){
+              await this.prefillData()
+          }
           conversationObject = this.state.conversationTree[nextConversationId];
           await new Promise(r => setTimeout(r, 1000));
         }
+        //console.log(conversationObject);
         //Encountered a choice decision
         if (conversationObject.type === "CHOICE") {
           let conversationElm = (
@@ -137,11 +175,12 @@ class Form extends Component {
       }
     } catch (e) {
 
-        console.log("Something went wrong..")
+        console.log(e)
     }
   };
 
   handleUserResponse = async conversation => {
+    
     this.setState({
       currentOption: {}
     });
@@ -149,7 +188,7 @@ class Form extends Component {
       <ConversationItem
         item={conversation}
         type={Constant.CONVERSATION_TYPE.TEXT}
-        key={conversation.data.text}
+        key={conversation.data.timestamp}
       />
     );
     this.registerUserConversationElm(conversationElm);
@@ -242,7 +281,7 @@ function ConversationItemImagePreview(props) {
   return (
     <div className="conversation-item-container">
       <div className="conversation-avatar" />
-      <div className="conversation-msg align-right imagePreview">
+      <div className="conversation-msg user-message imagePreview">
         <img src={props.item.data.text} alt="" />
       </div>
     </div>
@@ -253,7 +292,7 @@ function ConversationItem(props) {
   return (
     <div className="conversation-item-container">
       <div className="conversation-avatar" />
-      <div className="conversation-msg align-right">{props.item.data.text}</div>
+      <div className="conversation-msg user-message">{props.item.data.text}</div>
     </div>
   );
 }

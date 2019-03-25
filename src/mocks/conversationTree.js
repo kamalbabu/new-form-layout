@@ -64,6 +64,12 @@ let conversation=[
         type:'INFO',
         text:'We have successsully captured some data',
         option:''
+    },
+    {
+        id:'007',
+        type:'CHOICE',
+        text:'Shall we proceed to next section?',
+        option:'YES_OR_NO'
     }
 ];
 
