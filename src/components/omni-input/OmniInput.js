@@ -1,10 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import './OmniInput.css';
-import { MDBBtn, MDBIcon } from "mdbreact";
-import { MDBInput } from "mdbreact";
-// import { Fragment } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-
 import *  as Constant from '../../common/constants';
 
 class OmniInput extends Component {
@@ -15,7 +10,6 @@ class OmniInput extends Component {
             currentVal: '',
             currentOptionObj: {},
         }
-
     }
 
     handleUserInput(evt) {
@@ -25,8 +19,7 @@ class OmniInput extends Component {
     }
 
     handleInputKeyPress(evt) {
-        if (evt.key === 'Enter' && evt.target.value !== '') {
-            //console.log(this.state.currentVal);    
+        if (evt.key === 'Enter' && evt.target.value !== '') { 
             this.sendCurrentMsg(this.state.currentVal)
             this.clearInput();
         }
@@ -37,20 +30,19 @@ class OmniInput extends Component {
             currentVal: ''
         });
         this.optionObj = {};
-
     }
 
     sendCurrentMsg(value) {
-
         let response = {
             type: Constant.CONVERSATION_TYPE.TEXT,
             data: {
                 id: 'USER_TEXT',
-                value: {
-                    text: value
-                }
+                timestamp: new Date().toUTCString(),
+                text:value,
+                action:'PROCESS_TEXT'
             }
         };
+        
         this.props.onUserResponse(response);
     }
 
@@ -60,10 +52,14 @@ class OmniInput extends Component {
         });
         let response = {
             type: Constant.CONVERSATION_TYPE.OPTION,
-            data: option
+            data: {
+                id:option.id,
+                timestamp:new Date().toUTCString(),
+                text:option.value.text,
+                action:'PROCESS_OPTION_YES_NO'
+            }
         };
         this.props.onUserResponse(response);
-        this.forceUpdate();
     }
 
     render() {
@@ -104,9 +100,10 @@ export default OmniInput
 class OptionList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            options: props.options
-        }
+        // this.state = {
+        //     options: props.options
+        // }
+        this.currentItemId="";
     }
 
     componentDidMount() {
@@ -125,15 +122,13 @@ class OptionList extends Component {
 
     handleOptionSelect(optionItem) {
         let optionStatus = {
-            id: this.state.options.id,
+            id: this.props.options.id ,
             value: optionItem
         }
         this.props.onSelectOption(optionStatus)
     }
 
-
     render() {
-
         var items = this.props.options.id ? this.props.options.values : [];
         return (
             <div className="option-container">

@@ -1,7 +1,8 @@
 export const CONVERSATION_TYPE ={
     TEXT:'conversation',
     OPTION :'options',
-    BOT:'bot'
+    BOT:'bot',
+    UPLOAD:'upload'
 }
 
 export const ENTITY_TYPE={

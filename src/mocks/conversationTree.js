@@ -1,5 +1,3 @@
-import options from "./optionMock";
-
 let conversation=[
     {
         id:'001',

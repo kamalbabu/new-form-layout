@@ -1,12 +1,8 @@
+import { MDBCol, MDBContainer, MDBInput, MDBRow } from "mdbreact";
 import React, { Component } from 'react';
-import './Dashboard.css';
 import ScanDoc from '../../components/transfer-doc/ScanDoc';
+import './Dashboard.css';
 
-import { MDBBtn, MDBIcon } from "mdbreact";
-
-import { MDBInput } from "mdbreact";
-// import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 class Dashboard extends Component {
     render() {
         return (

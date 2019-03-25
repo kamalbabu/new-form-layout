@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Constant from "../../common/constants";
 import './Upload.css';
 
 class UploadFile extends Component {
@@ -20,33 +21,30 @@ class UploadFile extends Component {
             file: file,
             imagePreviewUrl: reader.result
           });
-          console.log(this.state);
-          let imagePreview = (<div className="imagePreview"><img src={this.state.imagePreviewUrl} /></div>);
-          this.props.onUpload(imagePreview)
+          let response = {
+            type: Constant.CONVERSATION_TYPE.TEXT,
+            data: {
+                id: 'UPLOAD_ID',
+                timestamp: new Date().toUTCString(),
+                text:this.state.imagePreviewUrl,
+                action:'PROCESS_ID'
+                
+            }
+          };
+          this.props.onUpload(response)
         }
         reader.readAsDataURL(file)
     }
 
     render() {
-        
-        let {imagePreviewUrl} = this.state;
-        let imagePreview = null;
-        if (imagePreviewUrl) {
-            imagePreview = (<img src={imagePreviewUrl} />);
-        } else {
-            imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-        }
-        //console.log(imagePreviewUrl);
-        //console.log(imagePreview);
         return (
             <div>
-
                 <div className="imgPreview">
                     {this.imagePreview}
                 </div>
                 <input className="fileInput" 
                        type="file" 
-                        onChange={(e)=>this.handleImageChange(e)} />
+                       onChange={(e)=>this.handleImageChange(e)} />
             </div>
         );
     }

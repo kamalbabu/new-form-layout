@@ -1,6 +1,7 @@
 const options = [
     {
         id: 'FLASH_FILL_OPTION',
+        action:'PROCESS_SELECT_ID',
         values: [{
             title: 'Aadhar Card',
             image: '',
@@ -22,6 +23,7 @@ const options = [
     },
     {
         id: 'YES_OR_NO',
+        action:'PROCESS_YES_NO',
         values: [
             {
                 title: 'Yes',
@@ -40,6 +42,7 @@ const options = [
     },
     {
         id: 'FLASH_FILL_METHOD_OPTION',
+        action:'PROCESS_CHOOSE_ID',
         values: [
             {
                 title: 'Upload a copy',

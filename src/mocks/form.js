@@ -88,7 +88,6 @@ let formDetails=[
         fieldId:'MARTIAL_STATUS',
         fieldName:'Martial Status',
         option:['Single','Married'],
-        option:[],
         value:''
     },
     {
@@ -116,7 +115,7 @@ let formDetails=[
         value:''
     },
     {
-        id:'2012',
+        id:'2013',
         cat:'FORM_CAT_ID',
         fieldId:'DRIVING_LICENSE',
         fieldName:'Driving License Number',
@@ -124,7 +123,7 @@ let formDetails=[
         value:''
     },
     {
-        id:'2013',
+        id:'2014',
         cat:'FORM_CAT_ACCOUNTSETUP',
         fieldId:'DRIVING_LICENSE',
         option:['Yes','No'],
@@ -134,9 +133,51 @@ let formDetails=[
 
 
 
+let aadharData =[
+    {
+        id:'FULL_NAME',
+        value:'John Smith'
+    },
+    {
+        id:'DATE_OF_BIRTH',
+        value:'01/03/1985'
+    },
+    {
+        id:'GENDER',
+        value:'Male'
+    },
+    {
+        id:'EMAIL',
+        value:'324323423'
+    },
+    {
+        id:'PHONE_HOME',
+        value:'324323423'
+    },
+    {
+        id:'PHONE_MOBILE',
+        value:'324323423'
+    },
+    {
+        id:'NATIONALITY',
+        value:'324323423'
+    },
+    {
+        id:'MARTIAL_STATUS',
+        value:'324323423'
+    },
+    {
+        id:'AADHAR',
+        value:'324323423'
+    }    
+]
+
+
+
 let formInfo ={
     formCategory:formCategory,
-    formDetails:formDetails
+    formDetails:formDetails,
+    flashFillPersonal:aadharData
 }
 
 

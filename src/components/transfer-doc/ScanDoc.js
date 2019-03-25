@@ -8,7 +8,7 @@ class ScanDoc extends Component {
     };
 
     capture = () => {
-        const imageSrc = this.webcam.getScreenshot();
+       // const imageSrc = this.webcam.getScreenshot();
     };
 
     render() {
