@@ -3,13 +3,13 @@ const options = [
         id: 'FLASH_FILL_OPTION',
         action:'PROCESS_SELECT_ID',
         values: [{
-            title: 'Aadhar Card',
+            title: 'Aadhar',
             image: '',
             value: 'FLASH_FILL_OPTION_AADHAR',
             text: 'I want to use my Aadhar'
         },
         {
-            title: 'PAN Card',
+            title: 'PAN',
             image: '',
             value: 'FLASH_FILL_OPTION_PAN',
             text: 'I want to use my PAN Card'
@@ -45,13 +45,13 @@ const options = [
         action:'PROCESS_CHOOSE_ID',
         values: [
             {
-                title: 'Upload a copy',
+                title: 'Upload',
                 image: '',
                 value: 'FLASH_FILL_UPLOAD',
                 text: 'I want to upload a copy '
             },
             {
-                title: 'Scan a document',
+                title: 'Scan',
                 image: '',
                 value: 'FLASH_FILL_SCAN',
                 text: 'I want to scan the document'
