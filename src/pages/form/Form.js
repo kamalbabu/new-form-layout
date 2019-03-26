@@ -54,8 +54,9 @@ class Form extends Component {
   };
 
   scrollToBottom = () => {
-    if (this.messagesEnd) {
-      this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+
+    if (this.messagesEnd>0) {
+        this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
     }
   };
 
