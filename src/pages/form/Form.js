@@ -225,6 +225,7 @@ class Form extends Component {
         <MDBRow className="form-sections-container">
           <FormSection
             item={this.state.formcategory}
+            selectedFormIndex={this.state.selectedFormCategory}
             onSelect={this.handleFormSectionSelection}
           />
         </MDBRow>
@@ -301,7 +302,7 @@ function FormSection(props) {
   return (
     <div className="form-section-container">
       {props.item.map((x, index) => (
-        <FormSectionItem item={x} index={index} key={x.id} onSelect={props.onSelect} />
+        <FormSectionItem item={x} index={index} selectedFormIndex={props.selectedFormIndex} key={x.id} onSelect={props.onSelect} />
       ))}
     </div>
   );
@@ -310,10 +311,10 @@ function FormSection(props) {
 function FormSectionItem(props) {
 
   return (
-    // <div className={`form-section-item ${this.state.selectedFormCategory == props.index ? 'section-item-selected' : null}`}
-    //   onClick={props.onSelect.bind(this, props.item.id)}>
-    <div className="form-section-item"
+    <div className={`form-section-item ${props.selectedFormIndex == props.index ? 'section-item-selected' : null}`}
       onClick={props.onSelect.bind(this, props.item.id)}>
+      {/* // <div className="form-section-item"
+    //   onClick={props.onSelect.bind(this, props.item.id)}> */}
       <div className="section-item-number">Step {props.index + 1}</div>
       <div className="section-item-label">{props.item.name}</div>
     </div>
