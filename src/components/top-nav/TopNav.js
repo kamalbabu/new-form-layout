@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBNavbar} from 'mdbreact';
+import logo from '../../logo.svg'
 import "./TopNav.css";
 
 class TopNavigation extends Component {
@@ -22,8 +23,11 @@ class TopNavigation extends Component {
     render() {
         return (
             <MDBNavbar className="flexible-navbar" fixed="true" light expand="md">
-                <div >
+                {/* <div >
                     <strong className="brand">Brand</strong>
+                </div> */}
+                 <div >
+                    <img className="brand-logo" src={logo} alt=""/>
                 </div>
             </MDBNavbar>
         );

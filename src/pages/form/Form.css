@@ -96,6 +96,7 @@
 
  .live-form-container{
     margin:0;
+    padding: 0px;
     border-right:3px solid #f9f9fa;
  }
  
@@ -206,9 +207,6 @@
  }
 
 
-.live-form-item{
-    border: 1px solid green;
-}
 
 .form-section-container{
     width: 100%;
@@ -236,11 +234,37 @@
 .user-message{
     background-color: #036CA4;
     margin-left: auto;
-    color:#fff;
-    margin-top:7px;
-    margin-bottom:7px;
+    color: #fff;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    padding: 10px 10px 10px 10px;
+    width: fit-content;
 }
 
 .modal-content{
     height: 100vh;
+}
+
+
+.live-form-item{
+    padding-left: 10px;
+    border-bottom: 1px solid #fbfdfb;
+    min-height: 50px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.live-form-item:hover{
+    background-color: #084F75;
+    color: #ffff
+}
+
+.live-form-title{
+    font-size: 14px;
+}
+
+.live-form-value{
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 4px;
 }
