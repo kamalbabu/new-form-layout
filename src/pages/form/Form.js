@@ -308,6 +308,7 @@ function FormSection(props) {
 }
 
 function FormSectionItem(props) {
+
   return (
     // <div className={`form-section-item ${this.state.selectedFormCategory == props.index ? 'section-item-selected' : null}`}
     //   onClick={props.onSelect.bind(this, props.item.id)}>

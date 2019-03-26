@@ -172,8 +172,9 @@
     }
  }
  .conversation-area{
-    height: calc(100vh - 160px);
+    height: calc(100vh - 170px);
     overflow: auto;
+    margin-bottom: 10px;
  }
 
  .input-area{
