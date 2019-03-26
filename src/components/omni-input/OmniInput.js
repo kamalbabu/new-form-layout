@@ -19,7 +19,7 @@ class OmniInput extends Component {
     }
 
     handleInputKeyPress(evt) {
-        if (evt.key === 'Enter' && evt.target.value !== '') { 
+        if (evt.key === 'Enter' && evt.target.value !== '') {
             this.sendCurrentMsg(this.state.currentVal)
             this.clearInput();
         }
@@ -38,11 +38,11 @@ class OmniInput extends Component {
             data: {
                 id: 'USER_TEXT',
                 timestamp: new Date().toUTCString(),
-                text:value,
-                action:'PROCESS_TEXT'
+                text: value,
+                action: 'PROCESS_TEXT'
             }
         };
-        
+
         this.props.onUserResponse(response);
     }
 
@@ -53,10 +53,10 @@ class OmniInput extends Component {
         let response = {
             type: Constant.CONVERSATION_TYPE.OPTION,
             data: {
-                id:option.id,
-                timestamp:new Date().toUTCString(),
-                text:option.value.text,
-                action:'PROCESS_OPTION_YES_NO'
+                id: option.id,
+                timestamp: new Date().toUTCString(),
+                text: option.value.text,
+                action: 'PROCESS_OPTION_YES_NO'
             }
         };
         this.props.onUserResponse(response);
@@ -67,16 +67,19 @@ class OmniInput extends Component {
         this.hideOption = false;
         return (
             <Fragment>
-                <OptionList options={this.optionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)} />
-               
-                <div className="oip-container">
+                <div className="intelli-option-container">
+                    <OptionList options={this.optionObj} onSelectOption={this.onSelectUserOptionSelection.bind(this)} />
+
+
+                    <div className="omni-input-container">
                         <input type="text" id="ipOmniInput"
-                            className="form-control form-control-md omni-ip"
+                            className="form-control form-control-md omni-input"
                             value={this.state.currentVal}
                             onChange={this.handleUserInput.bind(this)}
                             onKeyPress={this.handleInputKeyPress.bind(this)}
                         />
                         <i className="material-icons btn-send">send</i>
+                    </div>
                 </div>
                 {/* <MDBRow className="mg-top-5 no-margin">
                     <MDBCol sm="12" className="flex no-margin">
@@ -103,7 +106,7 @@ class OptionList extends Component {
         // this.state = {
         //     options: props.options
         // }
-        this.currentItemId="";
+        this.currentItemId = "";
     }
 
     componentDidMount() {
@@ -122,7 +125,7 @@ class OptionList extends Component {
 
     handleOptionSelect(optionItem) {
         let optionStatus = {
-            id: this.props.options.id ,
+            id: this.props.options.id,
             value: optionItem
         }
         this.props.onSelectOption(optionStatus)

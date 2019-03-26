@@ -22,7 +22,7 @@ class Form extends Component {
       currentOption: {},
       currentInputExpects: Constant.CONVERSATION_TYPE.OPTION,
       modal: false,
-      aadharData:formInfo.aadharData
+      aadharData: formInfo.aadharData
     };
     //this.aadharData =formInfo.aadharData;
     this.conversationDomElm = [];
@@ -35,7 +35,7 @@ class Form extends Component {
     this.setState({
       formcategory: formInfo.formCategory,
       liveForm: formInfo.formDetails,
-      aadharData:formInfo.flashFillPersonal
+      aadharData: formInfo.flashFillPersonal
     });
   }
   componentDidMount() {
@@ -58,7 +58,7 @@ class Form extends Component {
       this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
     }
   };
-  
+
   registerConversationElm = async elm => {
     this.conversationDomElm.push(elm);
     await this.setState({
@@ -92,36 +92,36 @@ class Form extends Component {
   initBotConversation() {
     this.triggerConversation();
   }
-  updateCategoryPercentage(){
-      for(let index=0;index<this.state.formcategory.length;index++){
-        let currentCategoryId = this.state.formcategory[index].id;
+  updateCategoryPercentage() {
+    for (let index = 0; index < this.state.formcategory.length; index++) {
+      let currentCategoryId = this.state.formcategory[index].id;
 
-        let formItem = this.state.liveForm.find(x=>x.cat===currentCategoryId);
-        console.log(formItem);
-      }
+      let formItem = this.state.liveForm.find(x => x.cat === currentCategoryId);
+      console.log(formItem);
+    }
   }
-  prefillData(){
+  prefillData() {
     let currentFormData = this.state.liveForm;
-    
-    for(let index=0;index<this.state.aadharData.length;index++){
-        let item = this.state.aadharData[index];
-        
-        for(let liveIndex=0;liveIndex<currentFormData.length;liveIndex++){
-            if(item.id===currentFormData[liveIndex].fieldId){
-                currentFormData[liveIndex].value=item.value;
-                break;                
-            }
+
+    for (let index = 0; index < this.state.aadharData.length; index++) {
+      let item = this.state.aadharData[index];
+
+      for (let liveIndex = 0; liveIndex < currentFormData.length; liveIndex++) {
+        if (item.id === currentFormData[liveIndex].fieldId) {
+          currentFormData[liveIndex].value = item.value;
+          break;
         }
+      }
     }
     this.updateCategoryPercentage()
     this.setState({
-        liveForm:currentFormData
+      liveForm: currentFormData
     });
     this.forceUpdate();
   }
 
   triggerConversation = async () => {
-      console.log(this.state.lastConversationIndex)
+    console.log(this.state.lastConversationIndex)
     let conversationObject = this.state.conversationTree[
       this.state.lastConversationIndex
     ];
@@ -141,8 +141,8 @@ class Form extends Component {
           await this.setState({
             lastConversationIndex: nextConversationId
           });
-          if(conversationObject.type==='INFO_PROCESS_FLASH_FILL'){
-              await this.prefillData()
+          if (conversationObject.type === 'INFO_PROCESS_FLASH_FILL') {
+            await this.prefillData()
           }
           conversationObject = this.state.conversationTree[nextConversationId];
           await new Promise(r => setTimeout(r, 1000));
@@ -175,12 +175,12 @@ class Form extends Component {
       }
     } catch (e) {
 
-        console.log(e)
+      console.log(e)
     }
   };
 
   handleUserResponse = async conversation => {
-    
+
     this.setState({
       currentOption: {}
     });
@@ -232,8 +232,8 @@ class Form extends Component {
           <MDBCol md="3" sm="12" xs="12" className="live-form-container">
             <LiveFormContainer item={currentFormItem} />
           </MDBCol>
-          <MDBCol md="9" sm="12" className="conversation-container no-margin">
-            <div className="conversation-area no-margin">
+          <MDBCol md="9" sm="12" className="conversation-container">
+            <div className="conversation-area">
               <div
                 className="conversation-item-area"
                 ref={el => {
@@ -270,7 +270,7 @@ export default Form;
 
 function BotConversationElm(props) {
   return (
-    <div className="conversation-container">
+    <div className="conversation-message-container">
       <div className="conversation-avatar" />
       <div className="conversation-msg">{props.item.text}</div>
     </div>
@@ -300,8 +300,8 @@ function ConversationItem(props) {
 function FormSection(props) {
   return (
     <div className="form-section-container">
-      {props.item.map(x => (
-        <FormSectionItem item={x} key={x.id} onSelect={props.onSelect} />
+      {props.item.map((x, index) => (
+        <FormSectionItem item={x} index={index} key={x.id} onSelect={props.onSelect} />
       ))}
     </div>
   );
@@ -309,11 +309,12 @@ function FormSection(props) {
 
 function FormSectionItem(props) {
   return (
-    <div
-      className="form-section-item"
-      onClick={props.onSelect.bind(this, props.item.id)}
-    >
-      {props.item.name}
+    // <div className={`form-section-item ${this.state.selectedFormCategory == props.index ? 'section-item-selected' : null}`}
+    //   onClick={props.onSelect.bind(this, props.item.id)}>
+    <div className="form-section-item"
+      onClick={props.onSelect.bind(this, props.item.id)}>
+      <div className="section-item-number">Step {props.index + 1}</div>
+      <div className="section-item-label">{props.item.name}</div>
     </div>
   );
 }

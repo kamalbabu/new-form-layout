@@ -1,13 +1,12 @@
-.mg-top-5{
+/* .mg-top-5{
     margin-top:50px;
 }
 
 .pad-left-12{
     padding-left: 12px;
 }
-.oip-container{
+.omni-input-container{
     position: relative;
-    margin-top: 38px;
 }
 
 .omni-ip{
@@ -26,7 +25,7 @@
 .option-container{
     position: absolute;
     width: 100%;
-    /* background-color: orange; */
+    background-color: orange;
     min-height: 60px;
     padding-left: 20px;
     padding-right: 20px;
@@ -56,4 +55,53 @@
 
 .option-item:hover{
     border: 1px solid black
+} */
+
+.omni-input-container{
+    position: relative;
+}
+
+.omni-input{
+    border-radius: 40px;
+    padding-left: 26px;
+    padding-right: 40px;
+}
+
+.btn-send{
+    position: absolute;
+    right: 8px;
+    top:9px;
+}
+
+.intelli-option-container{
+    position: relative;
+}
+
+.option-container{
+    position:absolute;
+    left:0;
+    top:-45px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    overflow-x: auto;
+    transition: all ease-in-out 300ms;
+}
+
+.option-item{
+    position: relative;
+    float: left;
+    width:fit-content;
+    height: 30px;
+    /* border:1px solid grey; */
+    border-radius: 40px;
+    padding: 5px 24px;
+    margin: 4px 6px;
+    cursor: pointer;
+    background-color: #084F75;
+    color:#fff;
+    font-weight: 400;
+    font-size:14px;
+    transition: all ease-in-out 300ms;
 }
