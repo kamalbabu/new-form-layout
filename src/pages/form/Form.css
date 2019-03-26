@@ -115,6 +115,11 @@
     margin:7px 0;
 }
 
+.section-item-selected{
+    background:#084F75;
+    margin: 0 !important;
+}
+
 .section-item-number{
     font-size:10px;
     font-weight: 400;
@@ -127,9 +132,19 @@
     opacity: 0.4;
 }
 
+.section-item-selected >
+.section-item-number,
+.section-item-selected >
+.section-item-label
+{
+    color:#fff;
+    opacity:1;
+}
+
 .conversation-container{
     height:calc(100vh - 110px);
 }
+
  @media (max-width: 575.98px) { 
     .live-form-container{
         display: none
