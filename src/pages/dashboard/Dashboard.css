@@ -1,3 +1,9 @@
 .vertical-align {
     margin-top: 20vh;
 }
+
+.btn-start{
+    background-color: #05567E !important ;   
+    border-radius:40px;
+    margin-left: 32%;
+}
