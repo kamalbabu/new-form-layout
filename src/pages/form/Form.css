@@ -1,75 +1,3 @@
-/* .full-height{
-    height: 90vh;
-    background-color: aquamarine
-} */
-
-/* .form-full-height{
-    height: 90vh;
-    background-color: #f3f3f3
-}
-
-.height-full-80{
-    height: 80vh;
-    background-color: #f3f3f3
-}
-.height-full-10{
-    height: 10vh;
-    background-color: #f3f3f3
-}
-
-.height-80{
-    max-height: 80%;
-    min-height: 80%;
-}
-
-.height-20{
-    max-height: 20%;
-    min-height: 20%;
-}
-
-.width-full{
-    width: 100%;
-}
-
-.light-border{
-    border: 1px solid #d2cfcf;
-}
-
-.conversation-container{
-    position: relative;
-    height: fit-content;
-    width:90%;
-    margin-right: 18px;
-    margin-left:18px;
-}
-
-.conversation-msg{
-    min-width: 20px;
-    width: fit-content;
-    border:1px solid grey;
-    border-radius: 40px;
-    min-height: 40px;
-    padding-top:4px;
-    padding-left:20px;
-    padding-right: 20px;
-    padding-bottom:4px;
-}
-
-
-@media (max-width: 575.98px) { 
-    .no-mobile{
-        display: none
-    }
-}
-
-
-@media (max-width: 767.98px) {
-
-    .no-mobile{
-        display: none
-    }
- }
- */
 
  .form-container{
      height:calc(100vh - 50px);
@@ -95,6 +23,7 @@
  }
 
  .live-form-container{
+    height: calc(100vh - 110px);
     margin:0;
     padding: 0px;
     border-right:3px solid #f9f9fa;
@@ -204,6 +133,10 @@
     padding-right: 4px;
     padding-bottom: 4px;
     overflow-x: scroll; */
+ }
+
+ .imagePreview img{
+     height: 80px;
  }
 
 

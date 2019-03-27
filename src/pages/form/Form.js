@@ -1,8 +1,7 @@
 import { MDBCol, MDBContainer, MDBModal, MDBModalBody, MDBRow } from "mdbreact";
-import React, { Component } from "react";
+import React, { Component ,Fragment} from "react";
 import * as Constant from "../../common/constants";
 import OmniInput from "../../components/omni-input/OmniInput";
-import UploadFile from "../../components/upload/UploadFile";
 import conversation from "../../mocks/conversationTree";
 import formInfo from "../../mocks/form";
 import options from "../../mocks/optionMock";
@@ -341,7 +340,7 @@ function FormSection(props) {
 function FormSectionItem(props) {
 
     return (
-        <div className={`form-section-item ${props.selectedFormIndex == props.index ? 'section-item-selected' : null}`}
+        <div className={`form-section-item ${props.selectedFormIndex === props.index ? 'section-item-selected' : null}`}
             onClick={props.onSelect.bind(this, props.item.id)}>
             {/* // <div className="form-section-item"
     //   onClick={props.onSelect.bind(this, props.item.id)}> */}
@@ -353,11 +352,11 @@ function FormSectionItem(props) {
 
 function LiveFormContainer(props) {
     return (
-        <div>
+        <Fragment>
             {props.item.map(x => (
                 <LiveFormItem item={x} key={x.id} />
             ))}
-        </div>
+        </Fragment>
     );
 }
 
