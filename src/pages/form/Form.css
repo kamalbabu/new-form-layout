@@ -46,7 +46,8 @@
 }
 
 .section-item-selected{
-    background:#084F75;
+    /* background:#084F75; */
+    background:#05567E;
     margin: 0 !important;
 }
 
@@ -105,6 +106,7 @@
         width: 40%;
         border-right:1px solid #FAFAF9;
         cursor: pointer;
+        /* background: #00B0CF; */
     }
     
 }
