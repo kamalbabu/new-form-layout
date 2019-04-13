@@ -1,7 +1,8 @@
 import { MDBCol, MDBContainer, MDBModal, MDBModalBody, MDBRow } from "mdbreact";
-import React, { Component ,Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import * as Constant from "../../common/constants";
 import OmniInput from "../../components/omni-input/OmniInput";
+import TopNavigation from "../../components/top-nav/TopNav"
 import conversation from "../../mocks/conversationTree";
 import formInfo from "../../mocks/form";
 import options from "../../mocks/optionMock";
@@ -217,7 +218,6 @@ class Form extends Component {
         );
         this.registerUserConversationElm(conversationElm);
         if (conversation.data.id === "FLASH_FILL_METHOD_OPTION") {
-            //this.toggleModal();
             this.inputElement.click();
         } else {
             await new Promise(r => setTimeout(r, 1000));
@@ -246,52 +246,46 @@ class Form extends Component {
             x => x.cat === currentStateId
         );
         return (
-            <MDBContainer fluid className="form-container">
-                <MDBRow className="form-sections-container">
-                    <FormSection
-                        item={this.state.formcategory}
-                        selectedFormIndex={this.state.selectedFormCategory}
-                        onSelect={this.handleFormSectionSelection}
-                    />
-                </MDBRow>
-                <MDBRow className="form-conversation-container">
-                    <MDBCol md="3" sm="12" xs="12" className="live-form-container">
-                        <LiveFormContainer item={currentFormItem} />
-                    </MDBCol>
-                    <MDBCol md="9" sm="12" className="conversation-container">
-                        <div className="conversation-area">
-                            <div
-                                className="conversation-item-area"
-                                ref={el => {
-                                    this.messagesEnd = el;
-                                }}
-                            >
-                                {this.state.conversationDOM}
+            <Fragment>
+                <TopNavigation />
+                <MDBContainer fluid className="form-container">
+                    <MDBRow className="form-sections-container">
+                        <FormSection
+                            item={this.state.formcategory}
+                            selectedFormIndex={this.state.selectedFormCategory}
+                            onSelect={this.handleFormSectionSelection}
+                        />
+                    </MDBRow>
+                    <MDBRow className="form-conversation-container">
+                        <MDBCol md="3" sm="12" xs="12" className="live-form-container">
+                            <LiveFormContainer item={currentFormItem} />
+                        </MDBCol>
+                        <MDBCol md="9" sm="12" className="conversation-container">
+                            <div className="conversation-area">
+                                <div
+                                    className="conversation-item-area"
+                                    ref={el => {
+                                        this.messagesEnd = el;
+                                    }}
+                                >
+                                    {this.state.conversationDOM}
+                                </div>
                             </div>
-                        </div>
-                        <div className="input-area no-margin">
-                            <OmniInput
-                                options={this.state.currentOption}
-                                onUserResponse={this.handleUserResponse.bind(this)}
-                            />
-                        </div>
-                    </MDBCol>
-                </MDBRow>
-                <input className="fileInput invisible" 
-                       type="file" 
-                       ref={input => this.inputElement = input}
-                       onChange={(e)=>this.handleImageChange(e)} />
-                {/* <MDBModal
-                    isOpen={this.state.modal}
-                    toggle={this.toggleModal}
-                    size="fluid"
-                    className="full-width full-height no-margin"
-                >
-                    <MDBModalBody>
-                        <UploadFile onUpload={this.onUploadFileComplete.bind(this)} />
-                    </MDBModalBody>
-                </MDBModal> */}
-            </MDBContainer>
+                            <div className="input-area no-margin">
+                                <OmniInput
+                                    options={this.state.currentOption}
+                                    onUserResponse={this.handleUserResponse.bind(this)}
+                                />
+                            </div>
+                        </MDBCol>
+                    </MDBRow>
+                    <input className="fileInput invisible"
+                        type="file"
+                        ref={input => this.inputElement = input}
+                        onChange={(e) => this.handleImageChange(e)} />
+                </MDBContainer>
+            </Fragment>
+
         );
     }
 }

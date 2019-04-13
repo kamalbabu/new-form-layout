@@ -7,3 +7,40 @@
     border-radius:40px;
     margin-left: 32%;
 }
+
+.brand-logo-big{
+    height: 72px;
+    margin-left: 50px;
+}
+
+.ip-container{
+    margin-top: 20px;
+    position: relative;
+}
+
+.ip-content{
+    width: 100%;
+    height: 40px;
+    padding-left: 8px;
+    padding-right: 60px;
+    margin-left: 4px;
+    margin-right: 4px;    
+}
+
+.btn-send{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    height: 20px;
+}
+
+.btn-upload{
+    position: absolute;
+    right: 36px;
+    top:10px;
+    height: 20px;
+}
+
+.no-show{
+    display: none;
+}

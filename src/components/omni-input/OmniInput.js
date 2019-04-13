@@ -81,17 +81,6 @@ class OmniInput extends Component {
                         <i className="material-icons btn-send">send</i>
                     </div>
                 </div>
-                {/* <MDBRow className="mg-top-5 no-margin">
-                    <MDBCol sm="12" className="flex no-margin">
-                        <input type="text" id="ipOmniInput"
-                            className="form-control form-control-md omni-ip"
-                            value={this.state.currentVal}
-                            onChange={this.handleUserInput.bind(this)}
-                            onKeyPress={this.handleInputKeyPress.bind(this)}
-                        />
-                        <i className="material-icons btn-send">send</i>
-                    </MDBCol>
-                </MDBRow> */}
             </Fragment>
         )
     }
@@ -103,9 +92,6 @@ export default OmniInput
 class OptionList extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     options: props.options
-        // }
         this.currentItemId = "";
     }
 
