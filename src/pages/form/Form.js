@@ -34,12 +34,6 @@ class Form extends Component {
         this.updateCategoryPercentage = this.updateCategoryPercentage.bind(this);
     }
 
-    toggleModal = () => {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
-
     componentWillMount() {
         this.setState({
             formcategory: formInfo.formCategory,
@@ -64,9 +58,13 @@ class Form extends Component {
 
     scrollToBottom = () => {
 
-        if (this.messagesEnd > 0) {
-            this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
-        }
+        // this.messagesEnd.scrollIkntoView({ behavior: "smooth" });
+        // console.log(this.messagesEnd.scrollHeight);
+        this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+        // console.log(this.messagesEnd);
+        // if (this.messagesEnd > 0) {
+        //     this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+        // }
     };
 
     registerConversationElm = async elm => {
@@ -105,9 +103,7 @@ class Form extends Component {
     updateCategoryPercentage() {
         for (let index = 0; index < this.state.formcategory.length; index++) {
             let currentCategoryId = this.state.formcategory[index].id;
-
             let formItem = this.state.liveForm.find(x => x.cat === currentCategoryId);
-            console.log(formItem);
         }
     }
     prefillData() {
@@ -222,7 +218,7 @@ class Form extends Component {
             />
         );
         this.registerUserConversationElm(conversationElm);
-        if (conversation.data.id === "FLASH_FILL_METHOD_OPTION") {
+        if (conversation.data.id === "FLASH_FILL_OPTION") {
             this.inputElement.click();
         } else {
             await new Promise(r => setTimeout(r, 1000));
