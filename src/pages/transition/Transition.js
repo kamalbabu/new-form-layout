@@ -31,7 +31,7 @@ class Transition extends Component {
                         {/* <span className="wait-message">
                               Please wait while we process your form
                         </span> */}
-                        <div class="loader">Please wait while we process your form</div>
+                        <div className="loader">Please wait while we process your form</div>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
