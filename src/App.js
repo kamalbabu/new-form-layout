@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Dashboard from './pages/dashboard/Dashboard';
+import Transition from './pages/transition/Transition';
 import Form from './pages/form/Form';
 import TopNavigation from './components/top-nav/TopNav';
 import SideNavigation from './components/side-nav/SideNav';
@@ -17,14 +18,14 @@ class App extends Component {
   render() {
     return (
       <div className="flexible-content">
-        <TopNavigation />
+        {/* <TopNavigation /> */}
         <main id="content">
           <Router>
             <Route exact path="/" component={Dashboard} />
+            {/* <Route exact path="/" component={Form} /> */}
+            <Route exact path="/process" component={Transition} />
             <Route path="/form" component={Form} />
           </Router>
-          {/* <Form/> */}
-          {/* <Dashboard /> */}
         </main>
       </div>
     );

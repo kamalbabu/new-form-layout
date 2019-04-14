@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 import './OmniInput.css';
 import *  as Constant from '../../common/constants';
 
+import icoSend from "../../assets/ico-send.png";
+import icoMic from "../../assets/ico-rec.png";
+import icoEdit from "../../assets/ico-edit.png";
 class OmniInput extends Component {
 
     constructor(props) {
@@ -74,24 +77,18 @@ class OmniInput extends Component {
                     <div className="omni-input-container">
                         <input type="text" id="ipOmniInput"
                             className="form-control form-control-md omni-input"
+                            placeholder="Please provide input here"
                             value={this.state.currentVal}
                             onChange={this.handleUserInput.bind(this)}
                             onKeyPress={this.handleInputKeyPress.bind(this)}
                         />
-                        <i className="material-icons btn-send">send</i>
+                        <img className="ico-send" 
+                                onClick={this.handleUserInput.bind(this)}
+                                src={icoSend}></img>
+                        <img className="ico-mic"src={icoMic}></img>
+                        <img className="ico-edit"src={icoEdit}></img>                        
                     </div>
                 </div>
-                {/* <MDBRow className="mg-top-5 no-margin">
-                    <MDBCol sm="12" className="flex no-margin">
-                        <input type="text" id="ipOmniInput"
-                            className="form-control form-control-md omni-ip"
-                            value={this.state.currentVal}
-                            onChange={this.handleUserInput.bind(this)}
-                            onKeyPress={this.handleInputKeyPress.bind(this)}
-                        />
-                        <i className="material-icons btn-send">send</i>
-                    </MDBCol>
-                </MDBRow> */}
             </Fragment>
         )
     }
@@ -103,9 +100,6 @@ export default OmniInput
 class OptionList extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     options: props.options
-        // }
         this.currentItemId = "";
     }
 

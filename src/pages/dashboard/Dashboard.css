@@ -1,9 +1,62 @@
-.vertical-align {
+/* .vertical-align {
     margin-top: 20vh;
+} */
+
+
+
+.full-height{
+    height: 100vh;
+    background-color: #f5f7fc;
+}
+
+.offset-top{
+    margin-top:40%;
 }
 
 .btn-start{
     background-color: #05567E !important ;   
     border-radius:40px;
     margin-left: 32%;
+}
+
+.brand-logo-big{
+    height: 72px;
+    margin-left: 50px;
+}
+
+.ip-container{
+    margin-top: 20px;
+    position: relative;
+}
+
+.ip-content{
+    width: 100%;
+    height: 40px;
+    padding-left: 8px;
+    padding-right: 60px;
+    margin-left: 4px;
+    margin-right: 4px;    
+    border: 0px solid
+}
+
+.ip-content:focus{
+    outline: 0px solid;
+}
+
+.btn-send{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    height: 18px;
+}
+
+.btn-upload{
+    position: absolute;
+    right: 40px;
+    top:10px;
+    height: 18px;
+}
+
+.no-show{
+    display: none;
 }

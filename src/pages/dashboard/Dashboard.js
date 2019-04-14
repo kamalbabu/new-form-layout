@@ -1,31 +1,68 @@
-import { MDBCol, MDBContainer, MDBInput, MDBRow,MDBBtn } from "mdbreact";
+import { MDBCol, MDBContainer, MDBInput, MDBRow, MDBBtn } from "mdbreact";
 import React, { Component } from 'react';
-import ScanDoc from '../../components/transfer-doc/ScanDoc';
+import logo from '../../logo.svg'
 import './Dashboard.css';
+import send from "../../assets/ico-send.png";
+import upload from "../../assets/ico-upload.png";
+
 
 class Dashboard extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.onProcessForm =this.onProcessForm.bind(this);
+        this.onProcessUrl = this.onProcessUrl.bind(this);
+        this.onUploadFile = this.onUploadFile.bind(this);
+        this.inputElement = null;
     }
-    onProcessForm(){
-        console.log(this.props.history.push('/form'));
+
+    onProcessUrl() {
+        this.props.history.push('/process')
+    }
+
+    handleUploadFile(e) {
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = async () => {
+            setTimeout(() => {
+
+                this.props.history.push('/process')
+            }, 2000);
+        }
+        reader.readAsDataURL(file)
+    }
+
+    onUploadFile() {
+        this.inputElement.click();
     }
 
     render() {
         return (
-            <MDBContainer fluid>
+            <MDBContainer className="full-height" fluid>
                 <MDBRow className="vertical-align">
-                    <MDBCol md="4" sm="12" className="offset-md-4 flex">
-                        <MDBInput label="Please provide url to file" />
-                    </MDBCol>
-                </MDBRow>
-                <MDBRow className="">
-                    <MDBCol md="4" sm="12" className="offset-md-4 flex">
-                            <MDBBtn color="primary" 
-                                    className="btn-start"
-                                    onClick={this.onProcessForm}>Start</MDBBtn>
+                    <MDBCol md="4" sm="12" className="offset-md-4 flex offset-top">
+                        <img className="brand-logo-big" src={logo} alt="" />
+                        <div className="ip-container">
+                            <input className="ip-content"
+                                placeholder="Provide url or upload file to begin"
+
+                            ></input>
+                            <img className="btn-upload"
+                                src={upload}
+                                onClick={this.onUploadFile}
+                            ></img>
+                            <img className="btn-send"
+                                src={send}
+                                onClick={this.onProcessUrl}
+                            ></img>
+
+                        </div>
+                        <div className="no-show">
+                            <input className="fileInput invisible"
+                                type="file"
+                                ref={input => this.inputElement = input}
+                                onChange={(e) => this.handleUploadFile(e)} />
+                        </div>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
