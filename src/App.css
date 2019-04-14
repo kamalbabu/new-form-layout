@@ -25,6 +25,10 @@
 
 #content{
   overflow: hidden;
+  
+}
+.content{
+  height: 100vh;
 }
 
 @keyframes App-logo-spin {

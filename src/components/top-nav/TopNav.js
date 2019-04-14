@@ -23,13 +23,10 @@ class TopNavigation extends Component {
     render() {
         return (
             <MDBNavbar className="flexible-navbar" fixed="true" light expand="md">
-                {/* <div >
-                    <strong className="brand">Brand</strong>
-                </div> */}
                 <div className="brand-container">
-                    <div className="live-form-toggle">
-                        <i className="material-icons">list</i>
-                    </div>
+                    {/* <div className="live-form-toggle">
+                        <i className="material-icons">menu</i>
+                    </div> */}
                     <div className="brand-logo-container">
                         <img className="brand-logo" src={logo} alt="" />
                     </div>
