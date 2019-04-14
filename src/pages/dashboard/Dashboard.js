@@ -38,9 +38,9 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <MDBContainer fluid>
+            <MDBContainer className="full-height" fluid>
                 <MDBRow className="vertical-align">
-                    <MDBCol md="4" sm="12" className="offset-md-4 flex">
+                    <MDBCol md="4" sm="12" className="offset-md-4 flex offset-top">
                         <img className="brand-logo-big" src={logo} alt="" />
                         <div className="ip-container">
                             <input className="ip-content"

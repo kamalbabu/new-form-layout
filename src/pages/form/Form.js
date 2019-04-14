@@ -1,4 +1,4 @@
-import { MDBCol, MDBContainer, MDBModal, MDBModalBody, MDBRow } from "mdbreact";
+import { MDBCol, MDBContainer, MDBModal, MDBModalBody, MDBRow, MDBBtn, MDBModalHeader } from "mdbreact";
 import React, { Component, Fragment } from "react";
 import * as Constant from "../../common/constants";
 import OmniInput from "../../components/omni-input/OmniInput";
@@ -7,6 +7,7 @@ import conversation from "../../mocks/conversationTree";
 import formInfo from "../../mocks/form";
 import options from "../../mocks/optionMock";
 import "./Form.css";
+import { NONAME } from "dns";
 
 
 class Form extends Component {
@@ -23,13 +24,20 @@ class Form extends Component {
             currentOption: {},
             currentInputExpects: Constant.CONVERSATION_TYPE.OPTION,
             modal: false,
-            aadharData: formInfo.aadharData
+            aadharData: formInfo.aadharData,
+            modal: false
         };
         //this.aadharData =formInfo.aadharData;
         this.conversationDomElm = [];
 
         this.prefillData = this.prefillData.bind(this);
         this.updateCategoryPercentage = this.updateCategoryPercentage.bind(this);
+    }
+
+    toggleModal = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     componentWillMount() {
@@ -235,6 +243,11 @@ class Form extends Component {
         });
     };
 
+    OnViewOverview = () => {
+        console.log('click overview');
+        this.toggleModal();
+    }
+
     render() {
         let currentStateId = this.state.formcategory[
             this.state.selectedFormCategory
@@ -248,6 +261,11 @@ class Form extends Component {
                 <MDBContainer fluid className="form-container">
                     <MDBRow className="title-container">
                         <span className="title-text">NEW ACCOUNT OPENING FORM</span>
+                        <span className="overview-section"
+                            onClick={this.OnViewOverview}
+                        >
+                            OVERVIEW
+                        </span>
                     </MDBRow>
                     <MDBRow className="form-sections-container">
                         <FormSection
@@ -284,6 +302,24 @@ class Form extends Component {
                         ref={input => this.inputElement = input}
                         onChange={(e) => this.handleImageChange(e)} />
                 </MDBContainer>
+
+                {/* <MDBBtn onClick={this.toggleModal}>Modal</MDBBtn> */}
+                <MDBModal isOpen={this.state.modal}
+                    toggle={this.toggle}
+                    backdrop={false}
+                    className="overview-mobile no-margin"
+                >
+                    <MDBModalHeader toggle={this.toggleModal}
+                        className="overview-header-size"
+                    >
+                        <span className="overview-title">NEW ACCOUNT APPLICATION</span>
+                    </MDBModalHeader>
+                    <MDBModalBody
+                        className="over-view-body"
+                    >
+                        <OverViewMobile category={this.state.formCategory} items={this.state.liveForm} />
+                    </MDBModalBody>
+                </MDBModal>
             </Fragment>
 
         );
@@ -304,7 +340,6 @@ function BotConversationElm(props) {
 function ConversationItemImagePreview(props) {
     return (
         <div className="conversation-item-container">
-            {/* <div className="conversation-avatar" /> */}
             <div className="conversation-msg user-message imagePreview">
                 <img src={props.item.data.text} alt="" />
             </div>
@@ -315,7 +350,6 @@ function ConversationItemImagePreview(props) {
 function ConversationItem(props) {
     return (
         <div className="conversation-item-container">
-            {/* <div className="conversation-avatar" /> */}
             <div className="conversation-msg user-message">{props.item.data.text}</div>
         </div>
     );
@@ -338,8 +372,8 @@ function FormSection(props) {
 }
 
 function FormSectionItem(props) {
-    let elemStyle={}
-    if(props.selectedFormIndex === props.index){
+    let elemStyle = {}
+    if (props.selectedFormIndex === props.index) {
         elemStyle = {
             'backgroundColor': '#05567E',
             'color': 'white',
@@ -352,7 +386,7 @@ function FormSectionItem(props) {
             'flex': '0 0 auto',
             'fontWeight': '500'
         }
-    }else{
+    } else {
         elemStyle = {
             'backgroundColor': props.color,
             'color': 'white',
@@ -366,7 +400,7 @@ function FormSectionItem(props) {
             'fontWeight': '400'
         }
     }
-    
+
     return (
         <div
             style={elemStyle}
@@ -381,11 +415,11 @@ function FormSectionItem(props) {
 
 function LiveFormContainer(props) {
     return (
-        <Fragment>
+        <div className="value-container">
             {props.item.map(x => (
                 <LiveFormItem item={x} key={x.id} />
             ))}
-        </Fragment>
+        </div>
     );
 }
 
@@ -396,4 +430,83 @@ function LiveFormItem(props) {
             <div className="live-form-value">{props.item.value}</div>
         </div>
     );
+}
+
+
+
+
+class OverViewMobile  extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            selectedIndex:0
+        }
+    }
+    handleSelection=(index)=>{
+        // selectedIndex=index
+        this.setState({
+            selectedIndex:index
+        })
+    }
+    render(){
+        let cat = formInfo.formCategory;
+        return (
+            <div>
+                {cat.map((x, index) => (
+                    <OverviewMobileSection cat={x} 
+                        items={this.props.items} 
+                        key={index} 
+                        select={this.state.selectedIndex} 
+                        current={index}
+                        onSelect={this.handleSelection} ></OverviewMobileSection>
+                ))}
+            </div>
+        )
+    }   
+}
+
+function OverviewMobileSection(props) {
+    let formElem = [];
+    for (let index in props.items) {
+        if (props.cat.id === props.items[index].cat) {
+            formElem.push(props.items[index])
+        }
+    }
+   
+    let displayObj={}
+    let isSelected = props.select===props.current;
+    if(!isSelected){
+        displayObj={
+        'display':'none'
+    }}
+
+    let onSelect=()=>{
+        props.onSelect(props.current);
+    }
+
+
+    return (
+        <div>
+            <div onClick={onSelect}>
+                <div 
+                    
+                    className={`overview-item-elm ${!isSelected 
+                                    ? 'overview-item-inactive' : 'overview-item-active'}`}  
+                ></div>
+                <span className="overview-cat-title"
+                >{props.cat.name}</span>
+            </div>
+
+
+            <div className="overview-item-container"
+                style={displayObj}
+            >
+
+                {formElem.map(x => (
+                    <LiveFormItem item={x} key={x.id} />
+                ))}
+
+            </div>
+        </div>
+    )
 }

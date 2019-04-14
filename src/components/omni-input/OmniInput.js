@@ -82,10 +82,11 @@ class OmniInput extends Component {
                             onChange={this.handleUserInput.bind(this)}
                             onKeyPress={this.handleInputKeyPress.bind(this)}
                         />
-                        <img className="ico-send" src={icoSend}></img>
+                        <img className="ico-send" 
+                                onClick={this.handleUserInput.bind(this)}
+                                src={icoSend}></img>
                         <img className="ico-mic"src={icoMic}></img>
-                        <img className="ico-edit"src={icoEdit}></img>
-                        {/* <i className="material-icons btn-send">send</i> */}
+                        <img className="ico-edit"src={icoEdit}></img>                        
                     </div>
                 </div>
             </Fragment>

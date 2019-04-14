@@ -1,5 +1,16 @@
-.vertical-align {
+/* .vertical-align {
     margin-top: 20vh;
+} */
+
+
+
+.full-height{
+    height: 100vh;
+    background-color: #f5f7fc;
+}
+
+.offset-top{
+    margin-top:40%;
 }
 
 .btn-start{
@@ -25,20 +36,25 @@
     padding-right: 60px;
     margin-left: 4px;
     margin-right: 4px;    
+    border: 0px solid
+}
+
+.ip-content:focus{
+    outline: 0px solid;
 }
 
 .btn-send{
     position: absolute;
     right: 10px;
     top:10px;
-    height: 20px;
+    height: 18px;
 }
 
 .btn-upload{
     position: absolute;
-    right: 36px;
+    right: 40px;
     top:10px;
-    height: 20px;
+    height: 18px;
 }
 
 .no-show{

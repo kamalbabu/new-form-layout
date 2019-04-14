@@ -21,8 +21,8 @@ class App extends Component {
         {/* <TopNavigation /> */}
         <main id="content">
           <Router>
-            {/* <Route exact path="/" component={Dashboard} /> */}
-            <Route exact path="/" component={Form} />
+            <Route exact path="/" component={Dashboard} />
+            {/* <Route exact path="/" component={Form} /> */}
             <Route exact path="/process" component={Transition} />
             <Route path="/form" component={Form} />
           </Router>
