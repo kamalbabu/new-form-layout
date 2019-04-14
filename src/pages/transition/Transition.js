@@ -18,7 +18,6 @@ class Transition extends Component {
     }
 
     loadForm(){
-
         setTimeout(()=>{
             this.props.history.push('/form');
         },3000);
@@ -29,7 +28,10 @@ class Transition extends Component {
             <MDBContainer fluid>
                 <MDBRow className="vertical-align">
                     <MDBCol md="4" sm="12" className="offset-md-4 flex">
-                        <span>Please wait while we process your form</span>
+                        {/* <span className="wait-message">
+                              Please wait while we process your form
+                        </span> */}
+                        <div class="loader">Please wait while we process your form</div>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>

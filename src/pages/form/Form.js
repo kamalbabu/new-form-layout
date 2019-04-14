@@ -8,6 +8,7 @@ import formInfo from "../../mocks/form";
 import options from "../../mocks/optionMock";
 import "./Form.css";
 
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -186,10 +187,6 @@ class Form extends Component {
         let file = e.target.files[0];
 
         reader.onloadend = async () => {
-            // await this.setState({
-            //     file: file,
-            //     imagePreviewUrl: reader.result
-            // });
             let response = {
                 type: Constant.CONVERSATION_TYPE.TEXT,
                 data: {
@@ -249,6 +246,9 @@ class Form extends Component {
             <Fragment>
                 <TopNavigation />
                 <MDBContainer fluid className="form-container">
+                    <MDBRow className="title-container">
+                        <span className="title-text">NEW ACCOUNT OPENING FORM</span>
+                    </MDBRow>
                     <MDBRow className="form-sections-container">
                         <FormSection
                             item={this.state.formcategory}
@@ -295,7 +295,7 @@ export default Form;
 function BotConversationElm(props) {
     return (
         <div className="conversation-message-container">
-            <div className="conversation-avatar" />
+            <div className="conversation-avatar"></div>
             <div className="conversation-msg">{props.item.text}</div>
         </div>
     );
@@ -304,7 +304,7 @@ function BotConversationElm(props) {
 function ConversationItemImagePreview(props) {
     return (
         <div className="conversation-item-container">
-            <div className="conversation-avatar" />
+            {/* <div className="conversation-avatar" /> */}
             <div className="conversation-msg user-message imagePreview">
                 <img src={props.item.data.text} alt="" />
             </div>
@@ -315,29 +315,64 @@ function ConversationItemImagePreview(props) {
 function ConversationItem(props) {
     return (
         <div className="conversation-item-container">
-            <div className="conversation-avatar" />
+            {/* <div className="conversation-avatar" /> */}
             <div className="conversation-msg user-message">{props.item.data.text}</div>
         </div>
     );
 }
 
 function FormSection(props) {
+    let colors = [
+        '#008299',
+        '#0098B3',
+        '#00B0CF'
+    ]
+
     return (
         <div className="form-section-container">
             {props.item.map((x, index) => (
-                <FormSectionItem item={x} index={index} selectedFormIndex={props.selectedFormIndex} key={x.id} onSelect={props.onSelect} />
+                <FormSectionItem item={x} color={colors[index]} index={index} selectedFormIndex={props.selectedFormIndex} key={x.id} onSelect={props.onSelect} />
             ))}
         </div>
     );
 }
 
 function FormSectionItem(props) {
-
+    let elemStyle={}
+    if(props.selectedFormIndex === props.index){
+        elemStyle = {
+            'backgroundColor': '#05567E',
+            'color': 'white',
+            'maxHeight': '60px',
+            'padding': '12px 10px',
+            'margin': '0 -1px',
+            'width': '160px',
+            'borderRight': '1px solid #FAFAF9',
+            'cursor': 'pointer',
+            'flex': '0 0 auto',
+            'fontWeight': '500'
+        }
+    }else{
+        elemStyle = {
+            'backgroundColor': props.color,
+            'color': 'white',
+            'maxHeight': '60px',
+            'padding': '12px 10px',
+            'margin': '0 -1px',
+            'width': '160px',
+            'borderRight': '1px solid #FAFAF9',
+            'cursor': 'pointer',
+            'flex': '0 0 auto',
+            'fontWeight': '400'
+        }
+    }
+    
     return (
-        <div className={`form-section-item ${props.selectedFormIndex === props.index ? 'section-item-selected' : null}`}
+        <div
+            style={elemStyle}
+            //  className={` ${props.selectedFormIndex === props.index ? 'section-item-selected' : ''}`}            
+
             onClick={props.onSelect.bind(this, props.item.id)}>
-            {/* // <div className="form-section-item"
-    //   onClick={props.onSelect.bind(this, props.item.id)}> */}
             <div className="section-item-number">Step {props.index + 1}</div>
             <div className="section-item-label">{props.item.name}</div>
         </div>

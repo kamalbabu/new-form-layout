@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg'
 import './Dashboard.css';
 import send from "../../assets/ico-send.png";
-import upload from "../../assets/ico-rec.png";
+import upload from "../../assets/ico-upload.png";
 
 
 class Dashboard extends Component {
