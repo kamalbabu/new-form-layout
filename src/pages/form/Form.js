@@ -57,7 +57,7 @@ class Form extends Component {
     };
 
     scrollToBottom = () => {
-
+        
         // this.messagesEnd.scrollIkntoView({ behavior: "smooth" });
         // console.log(this.messagesEnd.scrollHeight);
         this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
@@ -240,7 +240,6 @@ class Form extends Component {
     };
 
     OnViewOverview = () => {
-        console.log('click overview');
         this.toggleModal();
     }
 
@@ -275,7 +274,7 @@ class Form extends Component {
                             <LiveFormContainer item={currentFormItem} />
                         </MDBCol>
                         <MDBCol md="9" sm="12" className="conversation-container">
-                            <div className="conversation-area">
+                            {/* <div className="conversation-area">
                                 <div
                                     className="conversation-item-area"
                                     ref={el => {
@@ -284,6 +283,14 @@ class Form extends Component {
                                 >
                                     {this.state.conversationDOM}
                                 </div>
+                            </div> */}
+                            <div className="conversation-area"
+                            ref={el => {
+                                this.messagesEnd = el;
+                            }}>
+                              
+                                    {this.state.conversationDOM}
+                              
                             </div>
                             <div className="input-area no-margin">
                                 <OmniInput

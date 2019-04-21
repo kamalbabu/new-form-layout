@@ -160,15 +160,16 @@ class OptionList extends Component {
                             <Fragment>
                                 {
                                     item.image? 
-                                    <div className="option-item-img-container">
+                                         <div className="option-item-img-container" key={index}>
                                              <img className="option-item-img"
                                                  src={item.image} alt=''
-                                                 key={index}
+                                                 
                                                  onClick={this.handleOptionSelect.bind(this, item)}
                                                  />
-                                    </div>
+                                          </div>
                                     
-                                            :<div className="option-item"
+                                            :
+                                            <div className="option-item"
                                             key={index}
                                             onClick={this.handleOptionSelect.bind(this, item)}>
                                             {item.title}</div>
