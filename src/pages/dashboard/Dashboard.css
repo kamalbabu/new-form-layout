@@ -6,7 +6,7 @@
 
 .full-height{
     height: 100vh;
-    background-color: #f5f7fc;
+    background-image: linear-gradient(#F5F7FC, #E1E8F5);    
 }
 
 .offset-top{
@@ -26,8 +26,8 @@
     }
 
     .brand-logo-big {
-        height: 72px;
-        margin-left: 50px;
+        height: 60px;
+        margin-left: 90px;
     }
 
     .ip-container {
@@ -42,6 +42,7 @@
         padding-right: 60px;
         margin-left: 4px;
         margin-right: 4px;
+        font-size: 12px;
         border: 0px solid
     }
 
@@ -49,20 +50,33 @@
             outline: 0px solid;
         }
 
+        .ip-content::placeholder{
+            color:#9D9E9E
+        }
+
     .btn-send {
         position: absolute;
         right: 10px;
-        top: 10px;
-        height: 18px;
+        top: 12px;
+        height: 16px;
     }
 
     .btn-upload {
         position: absolute;
-        right: 40px;
+        right: 46px;
         top: 10px;
-        height: 18px;
+        height: 14px;
     }
 
     .no-show {
         display: none;
+    }
+
+    .sp-separator{
+        position: absolute; 
+        top:10px;
+        height: 14px;
+        right: 36px;
+        border-right: 1px solid #B1B2B3;
+        
     }

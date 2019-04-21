@@ -19,6 +19,17 @@ class OmniInput extends Component {
         this.setState({
             currentVal: evt.target.value
         });
+        // this.sendCurrentMsg(this.state.currentVal)
+        // this.clearInput();
+    }
+
+    hendSendButtonClick = (evt)=>{
+        console.log(this.state.currentVal)
+        this.sendCurrentMsg(this.state.currentVal);
+        this.setState({
+            currentVal: ''
+        });
+
     }
 
     handleInputKeyPress(evt) {
@@ -78,12 +89,12 @@ class OmniInput extends Component {
                         <input type="text" id="ipOmniInput"
                             className="form-control form-control-md omni-input"
                             placeholder="Please provide input here"
-                            value={this.state.currentVal}
+                            value={this.state.currentVal ||''}
                             onChange={this.handleUserInput.bind(this)}
                             onKeyPress={this.handleInputKeyPress.bind(this)}
                         />
                         <img className="ico-send" 
-                                onClick={this.handleUserInput.bind(this)}
+                                onClick={this.hendSendButtonClick.bind(this)}
                                 src={icoSend}></img>
                         <img className="ico-mic"src={icoMic}></img>
                         <img className="ico-edit"src={icoEdit}></img>                        

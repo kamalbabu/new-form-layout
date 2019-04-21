@@ -3,7 +3,9 @@
     font-weight:600;
     font-style: italic;
 }
-
+.border-top-brand{
+   border-top:3px solid #0090AA
+}
 .flexible-navbar{
     padding:5px 15px !important; 
     height:50px !important;
