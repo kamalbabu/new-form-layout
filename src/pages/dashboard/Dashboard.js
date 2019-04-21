@@ -55,7 +55,7 @@ class Dashboard extends Component {
                                 src={send}
                                 onClick={this.onProcessUrl}
                             ></img>
-
+                            <div className="sp-separator"></div>
                         </div>
                         <div className="no-show">
                             <input className="fileInput invisible"

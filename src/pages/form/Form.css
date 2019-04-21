@@ -9,17 +9,26 @@
  .title-container{
      position: relative;
      margin: 0;
-     height:40px;
+     height:30px;
      padding: 0;
-     
+     background-color: #EDF2F5;
  }
+
+ .overview-section{
+    position: absolute;
+    right:20px;
+    top:4px;
+    display: none;
+    font-size: 12px;
+    color:#05567E;
+}
 
  .title-text{
      margin-left: 8px;
-     margin-top: 12px;
+     margin-top: 6px;
      font-size: 12px;
      font-weight: 400;
-     color:grey;
+     color:#5B5B5B;
  }
 
  .form-sections-container{
@@ -58,6 +67,7 @@
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 8px;
+    color:#727271;
     /* width: 94%; */
     padding: 5px 15px;
     min-height: 26px;
@@ -69,7 +79,7 @@
 }
 
 .conversation-message-container{
-    margin:7px 0;
+    margin:10px 0;
 }
 
 .section-item-selected{
@@ -121,18 +131,19 @@
 
     .conversation-msg{
         min-width: 20px;
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
+        /* width: -webkit-fit-content;
+        width: -moz-fit-content; */
+        /* width: fit-content; */
         border-radius: 8px;
-        /* width: 94%; */
+        width: 92%;
         padding: 10px 10px 10px 10px;
         min-height: 26px;
         font-size: 13px;
         font-weight: 400;
         background-color: white;
         margin-left: 24px;
-        box-shadow: 2px 2px 9px #e6e6e6;
+        box-shadow: 2px 2px 4px #e6e6e6;
+        color:#727271;
     }
 
     .conversation-avatar{
@@ -163,7 +174,7 @@
 }
 
  .conversation-area{
-    height: calc(100vh - 200px);
+    height: calc(100vh - 188px);
     overflow: auto;
     margin-bottom:10px;
  }
@@ -208,12 +219,14 @@
 
 .user-message{
     background-color: #05567E;
+    margin-right: 4px;
     margin-left: auto;
     color: #fff;
     margin-top: 7px;
     margin-bottom: 7px;
     padding: 10px 10px 10px 10px;
     width: fit-content;
+    box-shadow: 2px 2px 4px #969393;   
 }
 
 .modal-content{
@@ -255,14 +268,6 @@
 }
 
 
-.overview-section{
-    position: absolute;
-    right:20px;
-    top:4px;
-    display: none;
-    font-size: 16px;
-}
-
 
 
 @media (max-width: 767.98px) {
@@ -270,12 +275,21 @@
     .live-form-container{
         display: none
     }
-    .overview-section{
+    /* .overview-section{
         position: absolute;
         right:20px;
         top:4px;
         display: block !important;
         font-size: 16px;
+    } */
+
+    .overview-section{
+        position: absolute;
+        right:20px;
+        top:6px;
+        display: block !important;
+        font-size: 12px;
+        color:#05567E;
     }
 
     .overview-mobile{
@@ -299,10 +313,12 @@
     }
  }
 
-.overview-item-container{
+
+ .overview-item-container{
     margin-top:-18px;
     padding-top: 28px;
-    padding-left: 56px;
+    padding-bottom: 28px;
+    padding-left: 26px;
     padding-right: 5px;
     border-left:1px solid #008eb7;
     margin-left: 14px;
@@ -331,4 +347,14 @@
 
 .overview-item-inactive{
     background-color: #D3DFE8;
+}
+
+#content > div.modal.fade.top.show > div > div > div.modal-header.overview-header-size > button{
+    font-size: 33px;
+    font-weight: 100;
+    color: white;
+}
+
+#content > div.modal.fade.top.show > div > div > div.modal-header.overview-header-size{
+    height: 62px;
 }
