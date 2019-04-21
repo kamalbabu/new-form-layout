@@ -24,12 +24,13 @@ class TopNavigation extends Component {
         return (
             <MDBNavbar className="flexible-navbar border-top-brand" fixed="true" light expand="md">
                 <div className="brand-container">
-                    {/* <div className="live-form-toggle">
+                    <div className="live-form-toggle">
                         <i className="material-icons">menu</i>
-                    </div> */}
-                    <div className="brand-logo-container">
-                        <img className="brand-logo" src={logo} alt="" />
                     </div>
+                    <div className="brand-logo-container">
+                        <a href="/"><img className="brand-logo" src={logo} alt=""  /></a>
+                    </div>
+                    {/* <i className="material-icons icon-left">menu</i> */}
                 </div>
             </MDBNavbar >
         );

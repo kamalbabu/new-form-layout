@@ -176,6 +176,7 @@
  .conversation-area{
     height: calc(100vh - 188px);
     overflow: auto;
+    padding-bottom: 36px;
     margin-bottom:10px;
  }
  
