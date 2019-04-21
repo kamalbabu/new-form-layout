@@ -5,6 +5,13 @@ import *  as Constant from '../../common/constants';
 import icoSend from "../../assets/ico-send.png";
 import icoMic from "../../assets/ico-rec.png";
 import icoEdit from "../../assets/ico-edit.png";
+
+
+import icoADR from "../../assets/ico-aadhar.png"; 
+import icoPAN from "../../assets/ico-pan.png";
+import icoDRV from "../../assets/ico-drv.png";
+
+
 class OmniInput extends Component {
 
     constructor(props) {
@@ -77,7 +84,14 @@ class OmniInput extends Component {
     }
 
     render() {
+        
         this.optionObj = this.props.options;
+        if(this.optionObj.id==='FLASH_FILL_OPTION'){
+            this.optionObj.values[0].image=icoADR
+            this.optionObj.values[1].image=icoPAN
+            this.optionObj.values[2].image=icoDRV
+        }
+        console.log(this.optionObj);
         this.hideOption = false;
         return (
             <Fragment>
@@ -143,10 +157,27 @@ class OptionList extends Component {
                 {
                     items.map(function (item, index) {
                         return (
-                            <div className="option-item"
-                                key={index}
-                                onClick={this.handleOptionSelect.bind(this, item)}>
-                                {item.title}</div>
+                            <Fragment>
+                                {
+                                    item.image? 
+                                    <div className="option-item-img-container">
+                                             <img className="option-item-img"
+                                                 src={item.image} alt=''
+                                                 key={index}
+                                                 onClick={this.handleOptionSelect.bind(this, item)}
+                                                 />
+                                    </div>
+                                    
+                                            :<div className="option-item"
+                                            key={index}
+                                            onClick={this.handleOptionSelect.bind(this, item)}>
+                                            {item.title}</div>
+                                }
+                            </Fragment>
+                           
+
+
+                            
                         )
                     }.bind(this))
                 }
