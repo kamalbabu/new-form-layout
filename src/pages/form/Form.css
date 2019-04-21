@@ -358,3 +358,8 @@
 #content > div.modal.fade.top.show > div > div > div.modal-header.overview-header-size{
     height: 62px;
 }
+
+.option-item-img{
+    height: 40px;
+    margin: 0 10px;
+}
